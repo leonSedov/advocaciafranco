@@ -1,228 +1,488 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineBlog · Séries & Filmes</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* [SEU CSS ORIGINAL PERMANECE IGUAL] */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease; }
-        :root { --bg-body: #f8fafc; --bg-surface: #ffffff; --bg-card: #ffffff; --text-primary: #0f172a; --text-secondary: #334155; --text-muted: #64748b; --accent: #8b5cf6; --accent-hover: #7c3aed; --border: #e2e8f0; --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02); --shadow-hover: 0 20px 30px -10px rgba(0, 0, 0, 0.15); --navbar-bg: rgba(255, 255, 255, 0.8); --header-bg: linear-gradient(145deg, #f1f5f9 0%, #e6edf5 100%); --footer-bg: #e6edf5; }
-        body.dark { --bg-body: #0b1120; --bg-surface: #1e293b; --bg-card: #1e293b; --text-primary: #f1f5f9; --text-secondary: #cbd5e1; --text-muted: #94a3b8; --accent: #a78bfa; --accent-hover: #b794f4; --border: #334155; --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5); --shadow-hover: 0 20px 30px -10px #00000066; --navbar-bg: rgba(30, 41, 59, 0.8); --header-bg: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); --footer-bg: #0f172a; }
-        body { background-color: var(--bg-body); color: var(--text-primary); line-height: 1.5; -webkit-font-smoothing: antialiased; }
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
-        .navbar { position: sticky; top: 0; backdrop-filter: blur(12px); background-color: var(--navbar-bg); border-bottom: 1px solid var(--border); z-index: 50; padding: 0.9rem 0; }
-        .navbar .container { display: flex; align-items: center; justify-content: space-between; }
-        .logo { font-size: 1.8rem; font-weight: 700; background: linear-gradient(135deg, #8b5cf6, #d946ef); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.03em; }
-        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
-        .nav-links a { text-decoration: none; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; }
-        .nav-links a:hover { color: var(--accent); }
-        .theme-toggle { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 40px; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: 500; color: var(--text-secondary); box-shadow: var(--shadow); }
-        .theme-toggle i { font-size: 1.1rem; color: var(--accent); }
-        .page-header { background: var(--header-bg); padding: 3rem 0 2.5rem 0; border-bottom: 1px solid var(--border); }
-        .page-header h1 { font-size: 2.8rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
-        .search-bar { display: flex; max-width: 500px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 60px; padding: 0.3rem 0.3rem 0.3rem 1.5rem; align-items: center; justify-content: space-between; box-shadow: var(--shadow); }
-        .search-bar i { color: var(--text-muted); }
-        .search-bar input { border: none; background: transparent; width: 100%; padding: 0.8rem 0.5rem; font-size: 1rem; color: var(--text-primary); outline: none; }
-        .search-bar button { background: var(--accent); border: none; border-radius: 50px; padding: 0.7rem 1.5rem; color: white; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-        .search-bar button:hover { background: var(--accent-hover); }
-        .filter-tabs { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 2rem 0 1rem; }
-        .filter-btn { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 40px; padding: 0.6rem 1.5rem; font-weight: 600; font-size: 0.95rem; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; box-shadow: var(--shadow); }
-        .filter-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
-        .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-        .filter-btn.active:hover { color: white; }
-        .featured { margin: 3rem 0 3rem; }
-        .featured-card { display: flex; flex-wrap: wrap; background: var(--bg-card); border-radius: 2rem; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); transition: box-shadow 0.3s; }
-        .featured-card:hover { box-shadow: var(--shadow-hover); }
-        .featured-img { flex: 1 1 300px; min-height: 280px; background-size: cover; background-position: center; }
-        .featured-content { flex: 1 1 400px; padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
-        .featured-badge { background: var(--accent); color: white; padding: 0.3rem 1rem; border-radius: 40px; font-size: 0.85rem; font-weight: 600; width: fit-content; margin-bottom: 1rem; }
-        .featured-content h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.3; }
-        .featured-content p { color: var(--text-secondary); margin-bottom: 1.8rem; font-size: 1.1rem; }
-        .btn { background: var(--accent); border: none; padding: 0.9rem 2rem; border-radius: 40px; color: white; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; width: fit-content; transition: background 0.2s, transform 0.1s; box-shadow: 0 6px 14px rgba(139, 92, 246, 0.3); }
-        .btn:hover { background: var(--accent-hover); transform: scale(1.02); }
-        .section-title { font-size: 2rem; font-weight: 600; margin-bottom: 1.8rem; letter-spacing: -0.02em; }
-        .posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
-        .post-card { background: var(--bg-card); border-radius: 1.5rem; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); transition: all 0.3s; display: flex; flex-direction: column; }
-        .post-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
-        .card-img { height: 200px; background-size: cover; background-position: center; position: relative; }
-        .card-category { position: absolute; top: 1rem; left: 1rem; background: var(--accent); color: white; font-size: 0.8rem; font-weight: 600; padding: 0.3rem 1rem; border-radius: 40px; letter-spacing: 0.3px; backdrop-filter: blur(2px); }
-        .card-content { padding: 1.8rem 1.5rem 1.8rem; flex: 1; display: flex; flex-direction: column; }
-        .card-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.7rem; line-height: 1.3; }
-        .card-excerpt { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; flex: 1; }
-        .card-meta { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 1.2rem; margin-top: auto; }
-        .read-more { color: var(--accent); font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 0.4rem; font-size: 0.95rem; }
-        .read-more i { transition: transform 0.2s; }
-        .read-more:hover i { transform: translateX(4px); }
-        .post-date { color: var(--text-muted); font-size: 0.9rem; }
-        .footer { background: var(--footer-bg); border-top: 1px solid var(--border); padding: 3rem 0; margin-top: 3rem; }
-        .footer-content { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem; }
-        .footer-copy { color: var(--text-muted); }
-        .social-links { display: flex; gap: 1.8rem; }
-        .social-links a { color: var(--text-secondary); font-size: 1.4rem; transition: color 0.2s; }
-        .social-links a:hover { color: var(--accent); }
-        @media (max-width: 640px) { .container { padding: 0 1.5rem; } .page-header h1 { font-size: 2rem; } .featured-content { padding: 1.8rem; } .featured-content h2 { font-size: 1.8rem; } .navbar .container { flex-wrap: wrap; gap: 1rem; } .nav-links { gap: 1.2rem; } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Advocacia Franco — Direito Trabalhista e Previdenciário</title>
+<meta name="description" content="Advocacia Franco: atendimento humano em causas trabalhistas e previdenciárias. Seus direitos, defendidos com um sorriso.">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== PALETA ===== */
+:root{
+  --y:#FFB800;
+  --y2:#FFD25C;
+  --ink:#16120A;
+  --cream:#FFF7E0;
+  --white:#fff;
+  --coral:#FF5E3A;
+  --mut:#5b5340;
+  --font:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --bounce:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--ink);background:var(--cream);line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1180px,90%);margin:auto}
+section{padding:110px 0;position:relative}
+.tag{display:inline-block;background:var(--ink);color:var(--y);font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:7px 16px;border-radius:99px;margin-bottom:20px}
+h2{font-size:clamp(2rem,4.6vw,3.4rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:18px}
+h2 mark{background:linear-gradient(transparent 58%,var(--y) 58%);color:inherit;padding:0 4px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:99px;font-weight:600;font-size:.95rem;border:2px solid var(--ink);transition:transform .4s var(--bounce),box-shadow .4s var(--ease),background .3s;cursor:pointer;font-family:inherit}
+.btn.dark{background:var(--ink);color:var(--y)}
+.btn.light{background:transparent}
+.btn:hover{transform:translateY(-4px) rotate(-1.5deg);box-shadow:0 8px 0 var(--ink)}
+.btn.light:hover{background:var(--white)}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(60px) scale(.97);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.ln{display:block;overflow:hidden;padding-bottom:.08em}
+.ln>span{display:block;transform:translateY(115%) rotate(4deg);transition:transform 1s var(--ease);transition-delay:var(--d,0s)}
+.go .ln>span{transform:none}
+
+/* ===== PRELOADER ===== */
+#pre{position:fixed;inset:0;background:var(--y);z-index:999;display:grid;place-items:center;transition:transform .9s var(--ease) .1s;border-radius:0 0 50% 50%/0 0 12% 12%}
+#pre.out{transform:translateY(-110%)}
+#pre img{width:130px;height:auto;max-width:38vw;display:block;animation:hop .7s var(--bounce) infinite alternate;filter:drop-shadow(0 6px 0 rgba(22,18,10,.18))}
+@keyframes hop{to{transform:translateY(-18px) rotate(-8deg)}}
+#bar{position:fixed;top:0;left:0;height:4px;width:0;background:var(--ink);z-index:200}
+
+/* ===== LOGO ===== */
+.logo{display:inline-flex;align-items:center;gap:11px;font-weight:700;font-size:1.2rem;line-height:1.02;letter-spacing:-.02em}
+.logo img{width:42px;height:42px;object-fit:contain;flex:none;display:block}
+.logo span{display:block}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:14px;left:0;right:0;z-index:100}
+nav .bar{width:min(1180px,92%);margin:auto;display:flex;justify-content:space-between;align-items:center;padding:10px 14px 10px 22px;border-radius:99px;background:var(--white);border:2px solid var(--ink);box-shadow:0 5px 0 var(--ink);transition:transform .5s var(--ease)}
+nav.hide .bar{transform:translateY(-130%)}
+.menu{display:flex;gap:6px;list-style:none;align-items:center}
+.menu a{font-size:.88rem;font-weight:500;padding:9px 16px;border-radius:99px;transition:background .3s}
+.menu a:hover{background:var(--y2)}
+.menu .btn{padding:11px 22px;font-size:.85rem;border-width:2px}
+.menu .btn:hover{box-shadow:0 5px 0 var(--ink)}
+#burger{display:none;background:var(--y);border:2px solid var(--ink);border-radius:50%;width:44px;height:44px;cursor:pointer;position:relative}
+#burger i{position:absolute;left:11px;width:18px;height:2px;background:var(--ink);transition:.35s var(--ease)}
+#burger i:nth-child(1){top:14px}#burger i:nth-child(2){top:20px}#burger i:nth-child(3){top:26px}
+#burger.x i:nth-child(1){top:20px;transform:rotate(45deg)}#burger.x i:nth-child(2){opacity:0}#burger.x i:nth-child(3){top:20px;transform:rotate(-45deg)}
+
+/* ===== HERO ===== */
+.hero{background:var(--y);padding:170px 0 150px;overflow:hidden;min-height:100vh;display:flex;align-items:center}
+.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;position:relative;z-index:2}
+h1{font-size:clamp(2.7rem,7vw,5.6rem);font-weight:800;line-height:1;letter-spacing:-.035em;margin-bottom:28px}
+h1 em{font-style:normal;background:var(--ink);color:var(--y);padding:0 .18em;border-radius:.2em;display:inline-block;transform:rotate(-2deg)}
+.hero p.lead{font-size:1.15rem;max-width:520px;margin-bottom:38px;font-weight:500}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.trust{display:flex;gap:22px;margin-top:40px;flex-wrap:wrap;font-size:.85rem;font-weight:600}
+.trust span::before{content:"✓";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--y);margin-right:8px;font-size:.7rem}
+
+/* arte do hero */
+.art{position:relative;aspect-ratio:1;max-width:460px;margin-inline:auto;width:100%}
+
+/* ===== BLOB — agora BRANCO com sombra ===== */
+.blob{
+  position:absolute;
+  inset:6%;
+  background:var(--white);
+  border:2px solid var(--ink);
+  border-radius:62% 38% 55% 45%/48% 58% 42% 52%;
+  box-shadow:0 14px 0 var(--ink);
+  animation:morph 9s ease-in-out infinite;
+}
+@keyframes morph{50%{border-radius:40% 60% 38% 62%/58% 42% 58% 42%;transform:rotate(8deg)}}
+
+/* LOGO GRANDE NO HERO */
+.smile{position:absolute;inset:0;display:grid;place-items:center;color:var(--y);z-index:2}
+.smile img{
+  width:58%;
+  height:auto;
+  max-width:300px;
+  display:block;
+  animation:float 4s ease-in-out infinite;
+  filter:drop-shadow(0 8px 20px rgba(22,18,10,.18));
+}
+@keyframes float{50%{transform:translateY(-14px) rotate(3deg)}}
+
+.chip{position:absolute;background:var(--white);border:2px solid var(--ink);border-radius:18px;padding:12px 18px;font-weight:700;font-size:.9rem;box-shadow:0 5px 0 var(--ink);animation:float 5s ease-in-out infinite;z-index:3}
+.chip small{display:block;font-weight:500;font-size:.72rem;color:var(--mut)}
+.c1{top:2%;left:-6%;transform:rotate(-6deg)}
+.c2{bottom:8%;right:-8%;animation-delay:-2s;transform:rotate(5deg)}
+.c3{bottom:-2%;left:6%;background:var(--coral);color:#fff;animation-delay:-1s;font-size:.8rem}
+.sticker{position:absolute;top:-4%;right:-2%;width:120px;animation:spin 18s linear infinite;z-index:4}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wave{position:absolute;bottom:-1px;left:0;width:100%;line-height:0}
+.wave svg{width:100%;height:80px}
+
+/* ===== MARQUEE ===== */
+.marq{background:var(--ink);color:var(--y);overflow:hidden;padding:20px 0;transform:rotate(-1.2deg);margin:-30px -20px 0;position:relative;z-index:3}
+.marq div{display:flex;gap:44px;width:max-content;animation:mq 26s linear infinite;font-weight:700;font-size:1.3rem;white-space:nowrap}
+.marq span::after{content:"☺";margin-left:44px;color:var(--white)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ===== ÁREAS ===== */
+.head{max-width:680px;margin-bottom:56px}
+.head p{color:var(--mut);font-size:1.05rem}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.big{border:2px solid var(--ink);border-radius:32px;padding:44px 38px;background:var(--white);box-shadow:0 8px 0 var(--ink);position:relative;overflow:hidden;transition:transform .5s var(--bounce),box-shadow .4s}
+.big.yel{background:var(--y)}
+.big:hover{transform:translateY(-8px) rotate(-.6deg);box-shadow:0 16px 0 var(--ink)}
+.big .ico{width:64px;height:64px;border-radius:20px;background:var(--ink);color:var(--y);display:grid;place-items:center;font-size:1.8rem;margin-bottom:24px;transition:transform .5s var(--bounce)}
+.big:hover .ico{transform:rotate(-12deg) scale(1.15)}
+.big h3{font-size:1.9rem;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+.big p{color:var(--mut);margin-bottom:20px}
+.big.yel p{color:#3b3216}
+.big ul{list-style:none;display:grid;gap:9px;margin-bottom:28px}
+.big li{font-weight:500;font-size:.95rem;padding-left:30px;position:relative}
+.big li::before{content:"☺";position:absolute;left:0;color:var(--coral);font-weight:700}
+.link{font-weight:700;border-bottom:3px solid var(--ink);padding-bottom:2px;transition:letter-spacing .4s var(--ease)}
+.link:hover{letter-spacing:.04em}
+
+/* ===== SITUAÇÕES ===== */
+.sit{background:var(--white);border-block:2px solid var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:14px}
+.sc{background:var(--cream);border:2px solid var(--ink);border-radius:99px;padding:14px 24px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.95rem;color:var(--ink);transition:transform .4s var(--bounce),background .3s,box-shadow .3s}
+.sc:hover{background:var(--y);transform:translateY(-5px) rotate(-2deg);box-shadow:0 6px 0 var(--ink)}
+.hint{margin-top:26px;color:var(--mut);font-size:.9rem}
+
+/* ===== NÚMEROS ===== */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.num{background:var(--y);border:2px solid var(--ink);border-radius:28px;padding:34px;text-align:center;box-shadow:0 6px 0 var(--ink)}
+.num b{display:block;font-size:3.6rem;font-weight:800;line-height:1;letter-spacing:-.04em}
+.num small{font-weight:600}
+.num:nth-child(2){background:var(--white)}.num:nth-child(3){background:var(--ink);color:var(--y)}
+
+/* ===== PASSOS ===== */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.step{position:relative;padding:34px 30px 30px;border:2px dashed var(--ink);border-radius:28px;background:var(--cream)}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:-26px;left:26px;width:52px;height:52px;border-radius:50%;background:var(--y);border:2px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:1.3rem;transition:transform .5s var(--bounce)}
+.step:hover::before{transform:rotate(360deg) scale(1.15)}
+.step h4{font-size:1.3rem;font-weight:700;margin:8px 0 6px}
+.step p{color:var(--mut);font-size:.95rem}
+
+/* ===== FAQ ===== */
+.faq{background:var(--y)}
+.faq .wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:70px}
+details{background:var(--white);border:2px solid var(--ink);border-radius:22px;padding:20px 26px;margin-bottom:14px;transition:transform .4s var(--bounce)}
+details:hover{transform:translateX(6px)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;font-weight:700}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";display:grid;place-items:center;flex:none;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--y);transition:transform .4s var(--bounce)}
+details[open] summary::after{transform:rotate(135deg)}
+details p{padding-top:12px;color:var(--mut);font-size:.95rem}
+
+/* ===== CTA FINAL ===== */
+.final{text-align:center;overflow:hidden}
+.final h2{font-size:clamp(2.4rem,6vw,4.6rem)}
+.final p{max-width:520px;margin:0 auto 34px;color:var(--mut)}
+.final .cta{justify-content:center}
+
+/* ===== FOOTER ===== */
+footer{background:var(--ink);color:#e9dfc2;padding:70px 0 30px}
+footer .top{display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.12)}
+footer .logo{color:var(--y);margin-bottom:18px}
+footer .logo img{width:52px;height:52px}
+footer h5{color:var(--y);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;font-weight:700}
+footer ul{list-style:none;display:grid;gap:8px}
+footer li,footer li a{font-size:.9rem}
+footer a:hover{color:var(--y)}
+footer .bot{padding-top:24px;font-size:.76rem;color:#a89d80;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+#wa{position:fixed;right:22px;bottom:22px;z-index:90;width:62px;height:62px;border-radius:50%;background:var(--y);border:2px solid var(--ink);box-shadow:0 5px 0 var(--ink);display:grid;place-items:center;transition:transform .4s var(--bounce)}
+#wa:hover{transform:scale(1.12) rotate(-8deg)}
+#wa svg{width:30px;height:30px}
+
+/* ===== RESPONSIVO ===== */
+@media(max-width:900px){
+  section{padding:80px 0}
+  #burger{display:block}
+  .menu{position:fixed;inset:0;background:var(--y);flex-direction:column;justify-content:center;gap:12px;transform:translateY(-105%);transition:transform .7s var(--ease);border-radius:0 0 40px 40px}
+  .menu.open{transform:none}.menu a{font-size:1.4rem;font-weight:700}
+  #burger{z-index:120}
+  .hero .wrap,.duo,.faq .wrap,.steps,.nums,footer .top{grid-template-columns:1fr}
+  .hero{padding-top:130px}.art{max-width:340px}.c1{left:0}.c2{right:0}.steps{gap:44px}
+  .logo img{width:36px;height:36px}
+  #pre img{width:110px}
+  .smile img{max-width:220px}
+  .blob{box-shadow:0 10px 0 var(--ink)}
+}
+@media(max-width:640px){
+  .logo{font-size:1.05rem;gap:9px}
+  .logo img{width:32px;height:32px}
+  #pre img{width:95px}
+  .smile img{max-width:180px}
+  .blob{box-shadow:0 7px 0 var(--ink)}
+  .sticker{width:90px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}.rv,.ln>span{opacity:1;transform:none}}
+</style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">CineBlog</div>
-            <div class="nav-links">
-                <a href="index.html">Início</a>
-                <a href="#">Filmes</a>
-                <a href="#">Séries</a>
-                <a href="#">Reviews</a>
-                <div class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-sun"></i>
-                    <span>Modo escuro</span>
-                </div>
-            </div>
-        </div>
-    </nav>
 
-    <header class="page-header">
-        <div class="container">
-            <h1>Explorar <span style="color: var(--accent);">Séries & Filmes</span></h1>
-            <div class="search-bar">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Pesquisar por título...">
-                <button id="searchBtn">Ir</button>
-            </div>
-            <div class="filter-tabs">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="filme">Filmes</button>
-                <button class="filter-btn" data-filter="serie">Séries</button>
-            </div>
-        </div>
-    </header>
+<!-- PRELOADER -->
+<div id="pre"><img src="icone-adv-franco-1.png" alt="Advocacia Franco"></div>
+<div id="bar"></div>
 
-    <main class="container">
-        <section class="featured">
-            <div class="featured-card">
-                <div class="featured-img" style="background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&h=400&fit=crop');"></div>
-                <div class="featured-content">
-                    <span class="featured-badge"><i class="fas fa-star" style="margin-right: 6px;"></i>Destaque</span>
-                    <h2>A Magia do Cinema Automatizado</h2>
-                    <p>Descubra como a IA está transformando a criação de conteúdo para blogs e portais de notícias em tempo real.</p>
-                </div>
-            </div>
-        </section>
+<nav id="nav">
+  <div class="bar">
+    <a href="index.html" class="logo" aria-label="Advocacia Franco">
+      <img src="Novo-Projeto-2-1.png" alt="Advocacia Franco" />
+      <span>Advocacia<br>Franco</span>
+    </a>
+    <button id="burger" aria-label="Abrir menu"><i></i><i></i><i></i></button>
+    <ul class="menu" id="menu">
+      <li><a href="index.html">Início</a></li>
+      <li><a href="areas.html">Áreas</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contato.html" class="btn dark">Fale conosco</a></li>
+    </ul>
+  </div>
+</nav>
 
-        <section>
-            <h2 class="section-title">Artigos <span style="color: var(--accent);">recentes</span></h2>
-            <div class="posts-grid" id="postsGrid">
-                </div>
-        </section>
-    </main>
+<!-- ===== HERO ===== -->
+<header class="hero" id="hero">
+  <div class="wrap">
+    <div>
+      <span class="tag rv">Trabalhista · Previdenciário</span>
+      <h1>
+        <span class="ln"><span style="--d:.2s">Seus direitos,</span></span>
+        <span class="ln"><span style="--d:.35s">defendidos</span></span>
+        <span class="ln"><span style="--d:.5s">com um <em>sorriso.</em></span></span>
+      </h1>
+      <p class="lead rv" style="--d:.8s">Atendimento humano e sem complicação para quem precisa resolver questões do trabalho e da aposentadoria. A gente explica tudo, do começo ao fim.</p>
+      <div class="cta rv" style="--d:1s">
+        <a class="btn dark" id="heroWa" target="_blank" rel="noopener">Falar no WhatsApp →</a>
+        <a href="areas.html" class="btn light">Ver áreas de atuação</a>
+      </div>
+      <div class="trust rv" style="--d:1.2s"><span>Atendimento online e presencial</span><span>Linguagem simples</span><span>Acompanhamento do início ao fim</span></div>
+    </div>
+    <div class="art rv" style="--d:.5s" id="art">
+      <!-- BLOB BRANCO -->
+      <div class="blob"></div>
 
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-copy">© 2025 CineBlog — Feito com <i class="fas fa-heart" style="color: #f43f5e;"></i> para fãs de séries e filmes</div>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-            </div>
-        </div>
-    </footer>
+      <!-- LOGO GRANDE (substitui o sorriso SVG grande) -->
+      <div class="smile">
+        <img src="icone-adv-franco-1.png" alt="Advocacia Franco" />
+      </div>
 
-    <script>
-        (function() {
-            let allPosts = [];
-            const grid = document.getElementById('postsGrid');
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const searchInput = document.getElementById('searchInput');
-            const searchBtn = document.getElementById('searchBtn');
-            let currentFilter = 'all';
-            let searchTerm = '';
+      <div class="chip c1" data-m="18">Direito do Trabalho<small>Verbas, horas extras, rescisão…</small></div>
+      <div class="chip c2" data-m="-22">Direito Previdenciário<small>Aposentadoria e benefícios</small></div>
+      <div class="chip c3" data-m="12">Atendimento humano ♥</div>
 
-            // --- NOVIDADE: CARREGA POSTS DO ARQUIVO JSON EXTERNO ---
-            async function fetchPosts() {
-                try {
-                    // O n8n vai atualizar este arquivo posts.json no seu GitHub
-                    const response = await fetch('posts.json');
-                    allPosts = await response.json();
-                    filterPosts();
-                } catch (error) {
-                    console.error("Erro ao carregar posts.json:", error);
-                    grid.innerHTML = "<p>Erro ao carregar os artigos. Verifique se posts.json existe.</p>";
-                }
-            }
+      <!-- STICKER GIRATÓRIO — sorriso interno agora é a logo PNG -->
+      <svg class="sticker" viewBox="0 0 120 120">
+        <defs><path id="cp" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+        <circle cx="60" cy="60" r="58" fill="#fff" stroke="#16120A" stroke-width="2"/>
+        <text font-size="11.5" font-weight="700" fill="#16120A" letter-spacing="2.4"><textPath href="#cp">SEU DIREITO • SEU FUTURO • SEU DIREITO •</textPath></text>
+        <image href="icone-adv-franco-1.png" x="42" y="40" width="36" height="36" preserveAspectRatio="xMidYMid meet"/>
+      </svg>
+    </div>
+  </div>
+  <div class="wave"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 40c240 60 480 60 720 20s480-40 720 10v10H0z" fill="#FFF7E0"/></svg></div>
+</header>
 
-            function renderPosts(filteredPosts) {
-                if (!grid) return;
-                if (filteredPosts.length === 0) {
-                    grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem; background:var(--bg-surface); border-radius:2rem; border:1px solid var(--border);">
-                        <i class="fas fa-film" style="font-size:3rem; color:var(--text-muted); margin-bottom:1rem;"></i>
-                        <p style="color:var(--text-muted);">Nenhum post encontrado 😢</p>
-                    </div>`;
-                    return;
-                }
+<div class="marq"><div id="mq"></div></div>
 
-                let html = '';
-                filteredPosts.forEach(post => {
-                    html += `
-                        <article class="post-card">
-                            <div class="card-img" style="background-image: url('${post.image || 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=250&fit=crop'}');">
-                                <span class="card-category">${post.category === 'filme' ? '🎬 Filme' : '📺 Série'}</span>
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-title">${post.title}</h3>
-                                <p class="card-excerpt">${post.excerpt}</p>
-                                <div class="card-meta">
-                                    <a href="${post.url}" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
-                                    <span class="post-date"><i class="far fa-calendar-alt" style="margin-right: 4px;"></i>${post.date}</span>
-                                </div>
-                            </div>
-                        </article>
-                    `;
-                });
-                grid.innerHTML = html;
-            }
+<!-- ===== ÁREAS ===== -->
+<section id="areas">
+  <div class="wrap">
+    <div class="head">
+      <span class="tag rv">Como podemos ajudar</span>
+      <h2 class="rv" style="--d:.1s">Duas áreas, um <mark>mesmo cuidado</mark> com você.</h2>
+      <p class="rv" style="--d:.2s">Cada caso é único. Por isso, analisamos sua situação com calma e mostramos o melhor caminho.</p>
+    </div>
+    <div class="duo">
+      <article class="big yel rv left">
+        <div class="ico">💼</div>
+        <h3>Direito Trabalhista</h3>
+        <p>Para quem trabalha, ou já trabalhou, e quer entender e proteger seus direitos.</p>
+        <ul><li>Rescisão e verbas rescisórias</li><li>Horas extras e adicionais</li><li>Reconhecimento de vínculo</li><li>Assédio e acidente de trabalho</li></ul>
+        <a href="areas.html#trabalhista" class="link">Saiba mais →</a>
+      </article>
+      <article class="big rv" style="--d:.15s">
+        <div class="ico">🌅</div>
+        <h3>Direito Previdenciário</h3>
+        <p>Para você chegar à aposentadoria e receber os benefícios que merece, sem dor de cabeça.</p>
+        <ul><li>Aposentadorias e planejamento</li><li>Auxílio por incapacidade (doença/acidente)</li><li>BPC/LOAS e pensão por morte</li><li>Revisões e benefícios negados</li></ul>
+        <a href="areas.html#previdenciario" class="link">Saiba mais →</a>
+      </article>
+    </div>
+  </div>
+</section>
 
-            function filterPosts() {
-                let filtered = allPosts;
-                if (currentFilter !== 'all') {
-                    filtered = filtered.filter(p => p.category === currentFilter);
-                }
-                if (searchTerm.trim() !== '') {
-                    const term = searchTerm.trim().toLowerCase();
-                    filtered = filtered.filter(p => p.title.toLowerCase().includes(term));
-                }
-                renderPosts(filtered);
-            }
+<!-- ===== SITUAÇÕES ===== -->
+<section class="sit">
+  <div class="wrap">
+    <div class="head">
+      <span class="tag rv">Reconhece alguma situação?</span>
+      <h2 class="rv" style="--d:.1s">Toque na que mais se parece com a <mark>sua.</mark></h2>
+    </div>
+    <div class="chips" id="chips"></div>
+    <p class="hint rv">Ao tocar, abrimos uma conversa no WhatsApp já com o assunto preenchido.</p>
+  </div>
+</section>
 
-            // Eventos de Filtro e Busca
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentFilter = btn.getAttribute('data-filter');
-                    filterPosts();
-                });
-            });
+<!-- ===== NÚMEROS ===== -->
+<section>
+  <div class="wrap">
+    <div class="nums">
+      <div class="num rv"><b data-n="15" data-s="+">0</b><small>Anos de experiência</small></div>
+      <div class="num rv" style="--d:.15s"><b data-n="2500" data-s="+">0</b><small>Pessoas atendidas</small></div>
+      <div class="num rv" style="--d:.3s"><b data-n="100" data-s="%">0</b><small>Atendimento humanizado</small></div>
+    </div>
+  </div>
+</section>
 
-            searchBtn.addEventListener('click', () => { searchTerm = searchInput.value; filterPosts(); });
-            searchInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') { searchTerm = searchInput.value; filterPosts(); } });
+<!-- ===== PASSOS ===== -->
+<section style="padding-top:30px">
+  <div class="wrap">
+    <div class="head">
+      <span class="tag rv">Simples assim</span>
+      <h2 class="rv" style="--d:.1s">Como <mark>funciona</mark> o atendimento.</h2>
+    </div>
+    <div class="steps">
+      <div class="step rv"><h4>Você conta seu caso</h4><p>Pelo WhatsApp, por telefone ou pessoalmente. Sem pressa e sem “juridiquês”.</p></div>
+      <div class="step rv" style="--d:.15s"><h4>A gente analisa</h4><p>Avaliamos documentos e possibilidades e explicamos com clareza os caminhos possíveis.</p></div>
+      <div class="step rv" style="--d:.3s"><h4>Você acompanha tudo</h4><p>Atualizamos você a cada etapa, para você nunca ficar no escuro.</p></div>
+    </div>
+  </div>
+</section>
 
-            // Iniciar carregamento
-            fetchPosts();
+<!-- ===== FAQ ===== -->
+<section class="faq">
+  <div class="wrap">
+    <div>
+      <span class="tag rv">Dúvidas</span>
+      <h2 class="rv" style="--d:.1s">Perguntas que <mark style="background:linear-gradient(transparent 58%,#fff 58%)">todo mundo</mark> faz.</h2>
+    </div>
+    <div class="rv" style="--d:.2s">
+      <details open><summary>Como sei se tenho direito a algo?</summary><p>Cada situação depende de documentos e prazos. Conte seu caso e fazemos uma análise inicial para você entender suas possibilidades.</p></details>
+      <details><summary>Existe prazo para entrar com ação?</summary><p>Sim. Em muitos casos há prazos legais, por isso quanto antes você buscar orientação, melhor.</p></details>
+      <details><summary>Preciso ir até o escritório?</summary><p>Não necessariamente. Atendemos de forma online e também presencial, como for melhor para você.</p></details>
+      <details><summary>Como funcionam os honorários?</summary><p>Explicamos tudo de forma clara e por escrito antes de começar, sem surpresas.</p></details>
+    </div>
+  </div>
+</section>
 
-            // Dark Mode Logic
-            const themeToggle = document.getElementById('themeToggle');
-            const body = document.body;
-            if (localStorage.getItem('theme') === 'dark') body.classList.add('dark');
-            themeToggle.addEventListener('click', () => {
-                body.classList.toggle('dark');
-                localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
-            });
-        })();
-    </script>
+<!-- ===== CTA FINAL ===== -->
+<section class="final">
+  <div class="wrap">
+    <h2 class="rv">Vamos <mark>conversar?</mark></h2>
+    <p class="rv" style="--d:.1s">Conte sua situação e descubra o melhor caminho. A gente está aqui para ajudar, com um sorriso.</p>
+    <div class="cta rv" style="--d:.2s">
+      <a class="btn dark" id="finalWa" target="_blank" rel="noopener">Chamar no WhatsApp →</a>
+      <a href="contato.html" class="btn light">Outras formas de contato</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <a href="index.html" class="logo">
+          <img src="Novo-Projeto-2-1.png" alt="Advocacia Franco" />
+          <span>Advocacia<br>Franco</span>
+        </a>
+        <p style="max-width:320px;font-size:.9rem;color:#aa9e80;margin-top:6px">Advocacia trabalhista e previdenciária com atendimento humano e transparente.</p>
+      </div>
+      <div>
+        <h5>Páginas</h5>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="areas.html">Áreas</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contato.html">Fale conosco</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Fale com a gente</h5>
+        <ul>
+          <li><a href="https://wa.me/553438216128" target="_blank" rel="noopener">(34) 3821-6128</a></li>
+          <li><a href="https://wa.me/5534997088099" target="_blank" rel="noopener">(34) 99708-8099</a></li>
+          <li><a href="mailto:juridico@advocaciafranco.com.br">juridico@advocaciafranco.com.br</a></li>
+          <li style="color:#aa9e80;font-size:.8rem;margin-top:6px">Segunda a sexta · 08h às 17h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bot">
+      <span>© <span id="ano"></span> Advocacia Franco. Todos os direitos reservados.</span>
+      <span>Arthur Franco Sociedade Individual de Advocacia · CNPJ 35.479.437/0001-34</span>
+      <span>Conteúdo informativo, sem promessa de resultado.</span>
+    </div>
+  </div>
+</footer>
+
+<a id="wa" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 32 32"><path fill="#16120A" d="M16 3C9 3 3.400 8.600 3.400 15.500c0 2.400.7 4.700 1.900 6.600L3 29l7.100-2.200c1.800 1 3.800 1.500 5.900 1.500 7 0 12.600-5.600 12.600-12.500S23 3 16 3zm6.500 17.800c-.3.800-1.600 1.500-2.200 1.600-.6.100-1.300.1-2.100-.1-.5-.2-1.200-.4-2-.8-3.600-1.500-5.900-5.100-6.100-5.400-.2-.2-1.500-2-1.500-3.800s.9-2.700 1.300-3.100c.3-.4.700-.4.900-.4h.6c.2 0 .5-.1.700.5.300.6.900 2.100 1 2.300.1.200.1.400 0 .6-.1.200-.2.400-.4.600-.2.200-.4.400-.5.600-.2.200-.4.400-.2.800.2.300.9 1.500 2 2.400 1.300 1.200 2.400 1.600 2.800 1.800.3.200.6.100.8-.1.200-.3 1-1.100 1.200-1.500.3-.4.500-.3.900-.2.300.1 2.200 1 2.600 1.200.4.200.6.300.7.400.1.300.1 1-.2 1.800z"/></svg></a>
+
+<script>
+/* =====================================================
+   CONFIGURAÇÃO
+   ===================================================== */
+const CONFIG = {
+  whatsapp: "553438216128",
+  telefone: "(34) 3821-6128",
+  email: "juridico@advocaciafranco.com.br",
+  endereco: "Minas Gerais · Atendimento em todo o Brasil",
+  situacoes: [
+    "Fui demitido(a)","Horas extras não pagas","Trabalho sem carteira assinada","Acidente de trabalho",
+    "Aposentadoria negada","Quero me aposentar","Auxílio-doença cortado","BPC/LOAS","Pensão por morte","Revisão de benefício"
+  ],
+  marquee: ["Direito do Trabalho","Direito Previdenciário","Atendimento humano","Linguagem simples","Seu direito, seu futuro"]
+};
+
+const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+const wa=t=>`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(t)}`;
+
+/* ---------- Conteúdo dinâmico ---------- */
+$("#mq").innerHTML=[...Array(4)].flatMap(()=>CONFIG.marquee).map(t=>`<span>${t}</span>`).join("");
+$("#chips").innerHTML=CONFIG.situacoes.map((s,i)=>`<button class="sc rv" style="--d:${i*.06}s" data-s="${s}">${s}</button>`).join("");
+$("#chips").addEventListener("click",e=>{const b=e.target.closest(".sc");if(b)open(wa(`Olá! Gostaria de uma orientação sobre: ${b.dataset.s}.`),"_blank")});
+$("#heroWa").href=$("#finalWa").href=$("#wa").href=wa("Olá! Gostaria de agendar uma conversa.");
+$("#ano").textContent=new Date().getFullYear();
+
+/* ---------- Preloader + entrada do hero ---------- */
+addEventListener("load",()=>setTimeout(()=>{
+  $("#pre").classList.add("out");
+  $("#hero").classList.add("go");
+  $$("#hero .rv").forEach(e=>e.classList.add("in"));
+},800));
+
+/* ---------- Revelação ao rolar ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  e.target.classList.add("in");io.unobserve(e.target);
+  if(e.target.querySelector("[data-n]"))count(e.target);
+}),{threshold:.15,rootMargin:"0px 0px -50px 0px"});
+$$(".rv").forEach(el=>{if(!el.closest("#hero"))io.observe(el)});
+
+/* ---------- Contadores ---------- */
+function count(root){$$("[data-n]",root).forEach(el=>{
+  const end=+el.dataset.n,s=el.dataset.s||"",t0=performance.now();
+  (function f(t){const p=Math.min((t-t0)/1800,1);el.textContent=Math.round(end*(1-Math.pow(1-p,4)))+s;if(p<1)requestAnimationFrame(f)})(t0);
+})}
+
+/* ---------- Scroll ---------- */
+let last=0;const bar=$("#bar"),nav=$("#nav");
+addEventListener("scroll",()=>{
+  const y=scrollY;bar.style.width=y/(document.documentElement.scrollHeight-innerHeight)*100+"%";
+  nav.classList.toggle("hide",y>last&&y>300&&!$("#menu").classList.contains("open"));last=y;
+},{passive:true});
+
+/* ---------- Parallax dos chips ---------- */
+$("#art").addEventListener("mousemove",e=>{
+  const r=e.currentTarget.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  $$(".chip",e.currentTarget).forEach(c=>c.style.translate=`${x*c.dataset.m}px ${y*c.dataset.m}px`);
+});
+
+/* ---------- Menu mobile ---------- */
+const bg=$("#burger"),mn=$("#menu");
+bg.onclick=()=>{bg.classList.toggle("x");mn.classList.toggle("open")};
+</script>
 </body>
 </html>

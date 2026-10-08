@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#ffb800" />
+<meta name="description" content="Conheça a Advocacia Franco: uma equipe dedicada ao Direito Previdenciário e Trabalhista, com atendimento humano em todo o Brasil." />
+<meta property="og:title" content="Quem somos | Advocacia Franco" />
+<meta property="og:description" content="A advocacia como ela tem que ser: próxima, clara e comprometida com cada história." />
+<meta property="og:type" content="website" />
+<title>Quem somos | Advocacia Franco</title>
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ===== PALETA ===== */
+:root{
+  --y:#FFB800;
+  --y2:#FFD25C;
+  --ink:#16120A;
+  --cream:#FFF7E0;
+  --white:#fff;
+  --coral:#FF5E3A;
+  --mut:#655d4b;
+  --font:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --bounce:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--ink);background:var(--cream);line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--coral);outline-offset:4px}
+.wrap{width:min(1180px,90%);margin:auto}
+section{padding:118px 0;position:relative}
+.tag{display:inline-block;background:var(--ink);color:var(--y);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:7px 16px;border-radius:99px;margin-bottom:20px}
+h1,h2,h3,h4{margin:0 0 14px}
+h2{font-size:clamp(2rem,5vw,4.6rem);font-weight:800;line-height:1.05;letter-spacing:-.05em}
+h2 mark{background:linear-gradient(transparent 58%,var(--y) 58%);color:inherit;padding:0 4px}
+p{margin:0 0 14px}
+
+/* ===== BOTÕES ===== */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:99px;font-weight:600;font-size:.95rem;border:2px solid var(--ink);transition:transform .4s var(--bounce),box-shadow .4s var(--ease),background .3s,color .3s;cursor:pointer;font-family:inherit}
+.btn.dark{background:var(--ink);color:var(--y)}
+.btn.light{background:transparent}
+.btn:hover{transform:translateY(-4px) rotate(-1.5deg);box-shadow:0 8px 0 var(--ink)}
+.btn.light:hover{background:var(--white)}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(60px) scale(.97);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+
+/* ===== PRELOADER ===== */
+#pre{position:fixed;inset:0;background:var(--y);z-index:999;display:grid;place-items:center;transition:transform .9s var(--ease) .1s;border-radius:0 0 50% 50%/0 0 12% 12%}
+#pre.out{transform:translateY(-110%)}
+#pre img{width:130px;height:auto;max-width:38vw;display:block;animation:hop .7s var(--bounce) infinite alternate;filter:drop-shadow(0 6px 0 rgba(22,18,10,.18))}
+@keyframes hop{to{transform:translateY(-18px) rotate(-8deg)}}
+
+/* ===== PROGRESS BAR ===== */
+#bar{position:fixed;top:0;left:0;height:4px;width:0;background:var(--ink);z-index:200;transition:width .1s linear}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:14px;left:0;right:0;z-index:100}
+nav .nav-inner{width:min(1180px,92%);margin:auto;display:flex;justify-content:space-between;align-items:center;padding:10px 14px 10px 22px;border-radius:99px;background:var(--white);border:2px solid var(--ink);box-shadow:0 5px 0 var(--ink);transition:transform .5s var(--ease)}
+nav.hide .nav-inner{transform:translateY(-130%)}
+
+/* ===== LOGO ===== */
+.logo{display:inline-flex;align-items:center;gap:11px;font-weight:700;font-size:1.2rem;line-height:1.02;letter-spacing:-.03em}
+.logo img{width:42px;height:42px;object-fit:contain;flex:none;display:block}
+.logo span{display:block}
+
+.menu{display:flex;gap:4px;list-style:none;align-items:center}
+.menu a{font-size:.86rem;font-weight:500;padding:9px 15px;border-radius:99px;transition:background .3s;display:inline-block}
+.menu a:hover{background:var(--y2)}
+.menu a.active{background:var(--y)}
+.menu .btn{padding:11px 22px;font-size:.85rem;border-width:2px}
+.menu .btn:hover{box-shadow:0 5px 0 var(--ink);transform:translateY(-3px) rotate(-1deg);background:var(--y);color:var(--ink)}
+#burger{display:none;background:var(--y);border:2px solid var(--ink);border-radius:50%;width:44px;height:44px;position:relative;padding:0}
+#burger i{position:absolute;left:11px;width:18px;height:2px;background:var(--ink);transition:.35s var(--ease)}
+#burger i:nth-child(1){top:14px}
+#burger i:nth-child(2){top:20px}
+#burger i:nth-child(3){top:26px}
+#burger.x i:nth-child(1){top:20px;transform:rotate(45deg)}
+#burger.x i:nth-child(2){opacity:0}
+#burger.x i:nth-child(3){top:20px;transform:rotate(-45deg)}
+
+/* ===== HERO ===== */
+.hero{background:var(--y);padding:180px 0 150px;overflow:hidden;min-height:100vh;display:flex;align-items:center}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;position:relative;z-index:2}
+.hero .lead{font-size:1.15rem;max-width:520px;margin-bottom:38px;font-weight:500;color:#3a3216}
+.hero h1{font-size:clamp(2.7rem,7vw,5.6rem);font-weight:800;line-height:1;letter-spacing:-.04em;margin-bottom:28px}
+.hero h1 em{font-style:normal;background:var(--ink);color:var(--y);padding:0 .18em;border-radius:.2em;display:inline-block;transform:rotate(-2deg)}
+.cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+
+/* ===== ARTE DO HERO ===== */
+.art{position:relative;aspect-ratio:1;max-width:470px;margin-inline:auto;width:100%}
+
+/* BLOB BRANCO com borda e sombra dura */
+.blob{
+  position:absolute;
+  inset:6%;
+  background:var(--white);
+  border:2px solid var(--ink);
+  border-radius:62% 38% 55% 45%/48% 58% 42% 52%;
+  box-shadow:0 14px 0 var(--ink);
+  animation:morph 9s ease-in-out infinite;
+}
+@keyframes morph{50%{border-radius:40% 60% 38% 62%/58% 42% 58% 42%;transform:rotate(8deg)}}
+
+/* LOGO GRANDE NO HERO */
+.smile{position:absolute;inset:0;display:grid;place-items:center;z-index:2}
+.smile img{
+  width:58%;
+  height:auto;
+  max-width:300px;
+  display:block;
+  animation:float 4s ease-in-out infinite;
+  filter:drop-shadow(0 8px 20px rgba(22,18,10,.18));
+}
+@keyframes float{50%{transform:translateY(-14px) rotate(3deg)}}
+
+.chip{position:absolute;background:var(--white);border:2px solid var(--ink);border-radius:18px;padding:12px 18px;font-weight:700;font-size:.9rem;box-shadow:0 5px 0 var(--ink);animation:float 5s ease-in-out infinite;transition:translate .35s var(--ease);z-index:3}
+.chip small{display:block;font-weight:500;font-size:.72rem;color:var(--mut)}
+.c1{top:2%;left:-8%;transform:rotate(-6deg);animation-delay:-1.5s}
+.c2{bottom:8%;right:-9%;animation-delay:-2s;transform:rotate(5deg)}
+.c3{bottom:-2%;left:4%;background:var(--coral);color:#fff;animation-delay:-1s;font-size:.8rem}
+.sticker{position:absolute;top:-4%;right:-2%;width:120px;animation:spin 18s linear infinite;z-index:4}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wave{position:absolute;bottom:-1px;left:0;width:100%;line-height:0}
+.wave svg{width:100%;height:80px}
+
+/* ===== MARQUEE ===== */
+.marq{background:var(--ink);color:var(--y);overflow:hidden;padding:20px 0;transform:rotate(-1.2deg);margin:-30px -20px 0;position:relative;z-index:3}
+.marq div{display:flex;gap:44px;width:max-content;animation:mq 26s linear infinite;font-weight:700;font-size:1.3rem;white-space:nowrap}
+.marq span{display:inline-flex;align-items:center}
+.marq span::after{content:"☺";margin-left:44px;color:var(--white)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ===== STORY ===== */
+.story{background:var(--cream)}
+.story .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:110px;align-items:start}
+.story .lead-paragraph{color:var(--ink);font-size:1.3rem;font-weight:600;line-height:1.55;margin-bottom:20px}
+.story p{color:var(--mut);font-size:1rem}
+.story .scribe{position:absolute;right:8%;bottom:-40px;color:var(--coral);font-size:4rem;transform:rotate(12deg)}
+.link{font-weight:700;border-bottom:3px solid var(--ink);padding-bottom:2px;transition:letter-spacing .4s var(--ease),gap .35s;display:inline-flex;align-items:center;gap:8px;margin-top:10px}
+.link:hover{letter-spacing:.04em;gap:14px}
+
+/* ===== VALORES ===== */
+.valores{background:var(--white)}
+.head{max-width:680px;margin-bottom:54px}
+.head p{color:var(--mut);font-size:1.04rem}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.card{position:relative;padding:34px 30px;border:2px solid var(--ink);border-radius:28px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;transition:transform .5s var(--bounce),box-shadow .35s}
+.card:hover{transform:translateY(-8px) rotate(-.7deg);box-shadow:8px 16px 0 var(--ink)}
+.card .num{position:absolute;top:22px;right:24px;font-weight:800;font-size:.8rem;opacity:.75}
+.card .ico{width:60px;height:60px;border:2px solid currentColor;border-radius:18px;display:grid;place-items:center;font-size:1.7rem;margin-bottom:34px}
+.card h3{font-size:1.5rem;font-weight:800;letter-spacing:-.03em}
+.card p{color:var(--mut);font-size:.93rem;margin:0}
+.card.yel{background:var(--y)}
+.card.cream{background:var(--cream)}
+.card.dark{background:var(--ink);color:var(--y);min-height:400px}
+.card.dark p{color:#f3df9e}
+.card.dark ul{list-style:none;display:grid;gap:14px;margin-top:12px;padding:0}
+.card.dark li{padding-left:22px;position:relative;font-size:.82rem;color:#f3df9e;line-height:1.5}
+.card.dark li::before{content:"✦";position:absolute;left:0;color:var(--coral)}
+.card.dark strong{display:block;color:var(--white);font-size:.9rem;margin-bottom:2px}
+
+/* ===== EQUIPE ===== */
+.equipe{background:var(--cream);overflow:hidden}
+.equipe .head{display:flex;justify-content:space-between;align-items:end;gap:50px;margin-bottom:55px;max-width:none}
+.equipe .head h2{max-width:640px;margin-bottom:0}
+.equipe .head .note{max-width:300px;color:var(--mut);font-size:.95rem;margin:0}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.person{background:var(--white);border:2px solid var(--ink);border-radius:25px;box-shadow:5px 5px 0 var(--ink);overflow:hidden;transition:transform .45s var(--bounce),box-shadow .35s}
+.person:nth-child(4n+2){transform:translateY(26px)}
+.person:nth-child(4n+3){background:var(--y)}
+.person:hover{transform:translateY(-8px) rotate(-1deg);box-shadow:7px 13px 0 var(--ink)}
+.person:nth-child(4n+2):hover{transform:translateY(18px) rotate(1deg)}
+.person .photo{aspect-ratio:1/1.08;overflow:hidden;background:var(--y2)}
+.person .photo img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .55s var(--ease);display:block}
+.person:hover img{transform:scale(1.05)}
+.person .info{padding:16px 16px 20px}
+.person .name{font-size:1rem;font-weight:800;letter-spacing:-.03em;line-height:1.15;margin:0 0 8px}
+.person .role{color:var(--mut);font-size:.72rem;line-height:1.5;margin:0}
+.person:nth-child(4n+3) .role{color:#4b3b12}
+.team-source{margin-top:40px;color:var(--mut);font-size:.76rem}
+.team-source a{text-decoration:underline;text-underline-offset:3px}
+
+/* ===== TIMELINE ===== */
+.timeline-sec{background:var(--white);overflow:hidden}
+.timeline-head{max-width:580px;margin-bottom:68px}
+.timeline-head p:last-child{color:var(--mut);font-size:1rem}
+.timeline{position:relative;max-width:970px;margin:0 auto}
+.timeline::before{content:"";position:absolute;top:0;bottom:0;left:98px;width:3px;background:var(--y)}
+.tl-item{position:relative;display:grid;grid-template-columns:165px 1fr;gap:34px;min-height:128px;padding-bottom:38px}
+.tl-year{align-self:start;padding-top:2px;font-size:2rem;font-weight:800;letter-spacing:-.06em}
+.tl-dot{position:absolute;top:8px;left:89px;width:21px;height:21px;border:4px solid var(--white);border-radius:50%;background:var(--coral);box-shadow:0 0 0 2px var(--ink);z-index:2}
+.tl-item>div:last-child{padding-left:22px}
+.tl-item h3{font-size:1.25rem;letter-spacing:-.03em;margin:0 0 5px}
+.tl-item p{color:var(--mut);font-size:.9rem;max-width:620px;margin:0;line-height:1.55}
+.tl-item:last-child{padding-bottom:0}
+
+/* ===== CTA FINAL ===== */
+.final{background:var(--y);text-align:center;padding:140px 0 155px;overflow:hidden}
+.final h2{font-size:clamp(3.2rem,7vw,6.4rem)}
+.final p{max-width:520px;margin:0 auto 30px;font-size:1.05rem;font-weight:500;color:#3a3216}
+.final .cta{justify-content:center}
+.final::after{content:"";position:absolute;top:-110px;left:50%;width:520px;height:520px;border:2px solid var(--ink);border-radius:48% 52% 54% 46%/55% 45% 55% 45%;transform:translateX(-50%) rotate(16deg);opacity:.22;pointer-events:none}
+
+/* ===== FOOTER ===== */
+footer{background:var(--ink);color:#e9dfc2;padding:72px 0 26px}
+footer .top{display:grid;grid-template-columns:1.5fr 1fr 1.2fr;gap:60px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.14)}
+footer .logo{color:var(--y);margin-bottom:18px}
+footer .logo img{width:52px;height:52px}
+footer .brand-p{max-width:320px;font-size:.86rem;color:#aa9e80;margin:0}
+footer h5{color:var(--y);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 14px;font-weight:700}
+footer ul{list-style:none;display:grid;gap:6px;padding:0}
+footer li,footer li a{font-size:.84rem}
+footer a:hover{color:var(--y)}
+footer .bot{padding-top:22px;font-size:.72rem;color:#918466;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ===== WHATSAPP FLUTUANTE ===== */
+#wa{position:fixed;right:22px;bottom:22px;z-index:90;width:60px;height:60px;border-radius:50%;background:var(--y);border:2px solid var(--ink);box-shadow:0 5px 0 var(--ink);display:grid;place-items:center;transition:transform .4s var(--bounce)}
+#wa:hover{transform:scale(1.12) rotate(-8deg)}
+#wa svg{width:28px;height:28px}
+
+/* ===== RESPONSIVO ===== */
+@media(max-width:1000px){
+  .hero .wrap{gap:30px}
+  .grid3{grid-template-columns:1fr 1fr}
+  .grid3 .card.dark{grid-column:1/-1;min-height:auto}
+  .team-grid{grid-template-columns:repeat(3,1fr)}
+  .person:nth-child(4n+2){transform:none}
+  .person:nth-child(3n+2){transform:translateY(22px)}
+  .person:nth-child(4n+2):hover{transform:translateY(-6px) rotate(-1deg)}
+  .person:nth-child(3n+2):hover{transform:translateY(14px) rotate(1deg)}
+}
+@media(max-width:900px){
+  section{padding:86px 0}
+  .hero{padding:130px 0 100px;min-height:auto}
+  #burger{display:block;z-index:120}
+  .menu{position:fixed;inset:0;background:var(--y);flex-direction:column;justify-content:center;gap:12px;padding:80px 30px;transform:translateY(-105%);transition:transform .7s var(--ease);border-radius:0 0 40px 40px;z-index:110}
+  .menu.open{transform:none}
+  .menu a{font-size:1.3rem;font-weight:700;padding:12px 22px}
+  .menu .btn{padding:14px 26px;font-size:1rem}
+  .story .wrap,.equipe .head,.grid3{grid-template-columns:1fr}
+  .story .wrap{gap:30px}
+  .equipe .head{display:block;gap:0}
+  .equipe .head .note{margin-top:18px}
+  .grid3{gap:22px}
+  .card.dark{min-height:auto}
+  .art{max-width:340px}
+  .c1{left:0}.c2{right:0}
+  footer .top{grid-template-columns:1fr;gap:34px}
+  .logo img{width:36px;height:36px}
+  #pre img{width:110px}
+  .smile img{max-width:220px}
+  .blob{box-shadow:0 10px 0 var(--ink)}
+}
+@media(max-width:640px){
+  .hero h1{font-size:clamp(2.5rem,10vw,3.6rem)}
+  .hero .lead{font-size:1rem}
+  .cta{flex-direction:column;align-items:stretch}
+  .cta .btn{justify-content:center}
+  .team-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .person:nth-child(3n+2){transform:none}
+  .person:nth-child(odd){transform:translateY(10px)}
+  .person:hover,.person:nth-child(3n+2):hover{transform:translateY(-4px) rotate(-1deg)}
+  .person:nth-child(odd):hover{transform:translateY(4px) rotate(-1deg)}
+  .person .info{padding:13px 12px 16px}
+  .person .name{font-size:.9rem}
+  .person .role{font-size:.66rem}
+  .timeline::before{left:77px}
+  .tl-item{grid-template-columns:112px 1fr;gap:20px;min-height:144px;padding-bottom:34px}
+  .tl-year{font-size:1.6rem}
+  .tl-dot{left:68px}
+  .tl-item>div:last-child{padding-left:10px}
+  .tl-item h3{font-size:1.05rem}
+  .tl-item p{font-size:.8rem}
+  #wa{width:54px;height:54px;right:16px;bottom:16px}
+  footer .bot{flex-direction:column;gap:6px}
+  .logo{font-size:1.05rem;gap:9px}
+  .logo img{width:32px;height:32px}
+  #pre img{width:95px}
+  .smile img{max-width:180px}
+  .blob{box-shadow:0 7px 0 var(--ink)}
+  .sticker{width:90px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01s!important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="pre" aria-hidden="true"><img src="icone-adv-franco-1.png" alt="Advocacia Franco"></div>
+
+<!-- PROGRESSO -->
+<div id="bar" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo" aria-label="Advocacia Franco, início">
+      <img src="Novo-Projeto-2-1.png" alt="Advocacia Franco" />
+      <span>Advocacia<br>Franco</span>
+    </a>
+    <button id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+    <ul class="menu" id="menu">
+      <li><a href="index.html">Início</a></li>
+      <li><a href="areas.html">Áreas</a></li>
+      <li><a href="sobre.html" class="active">Sobre</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contato.html" class="btn dark">Fale conosco</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="hero">
+  <div class="wrap">
+    <div>
+      <span class="tag rv">Quem somos</span>
+      <h1 class="rv" style="--d:.1s">A advocacia como ela <em>tem que ser.</em></h1>
+      <p class="lead rv" style="--d:.2s">Uma equipe que acredita na capacidade de mudar vidas, acolher histórias e construir um futuro melhor para cada cliente.</p>
+      <div class="cta rv" style="--d:.3s">
+        <a href="#historia" class="btn dark">Conheça nossa história →</a>
+        <a href="#equipe" class="btn light">Ver a equipe</a>
+      </div>
+    </div>
+    <div class="art rv" style="--d:.35s" id="art" aria-hidden="true">
+      <!-- BLOB BRANCO -->
+      <div class="blob"></div>
+
+      <!-- LOGO GRANDE NO HERO -->
+      <div class="smile">
+        <img src="icone-adv-franco-1.png" alt="Advocacia Franco" />
+      </div>
+
+      <div class="chip c1" data-m="18">Desde 2011<small>Defendendo direitos com proximidade</small></div>
+      <div class="chip c2" data-m="-22">Direito com<small>olhar humano ♥</small></div>
+      <div class="chip c3" data-m="12">Em todo o Brasil ☺</div>
+
+      <!-- STICKER GIRATÓRIO — logo no centro -->
+      <svg class="sticker" viewBox="0 0 120 120">
+        <defs><path id="cp" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+        <circle cx="60" cy="60" r="58" fill="#fff" stroke="#16120A" stroke-width="2"/>
+        <text font-size="11.5" font-weight="700" fill="#16120A" letter-spacing="2.4"><textPath href="#cp">SEU DIREITO • SEU FUTURO • SEU DIREITO •</textPath></text>
+        <image href="icone-adv-franco-1.png" x="42" y="40" width="36" height="36" preserveAspectRatio="xMidYMid meet"/>
+      </svg>
+    </div>
+  </div>
+  <div class="wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 40c240 60 480 60 720 20s480-40 720 10v10H0z" fill="#FFF7E0"/></svg>
+  </div>
+</header>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marq" aria-label="Especialidades"><div id="mq"></div></div>
+
+<!-- ===== STORY ===== -->
+<section class="story" id="historia">
+  <div class="wrap">
+    <div class="rv" style="position:relative">
+      <span class="tag">De perto, como deve ser</span>
+      <h2>Experiência que<br>cabe na <mark>conversa.</mark></h2>
+      <div class="scribe" aria-hidden="true">✳</div>
+    </div>
+    <div class="rv" style="--d:.15s">
+      <p class="lead-paragraph">Somos um escritório consolidado, reconhecido pela experiência no Direito Previdenciário e Trabalhista. Atuamos em todo o território nacional, com foco em acolher cada história e orientar caminhos possíveis.</p>
+      <p>Contamos com um time de advogados especialistas, que oferece um atendimento personalizado e diferenciado. Acompanhamos cada caso com atenção e cuidado, sempre próximos das pessoas para tornar o processo jurídico mais simples e humano.</p>
+      <p>Combinamos a solidez de um escritório tradicional com as inovações necessárias para trazer agilidade aos processos — com seriedade, honestidade e uma escuta atenta a cada história.</p>
+      <a class="link" href="#valores">O que guia o nosso trabalho →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VALORES ===== -->
+<section class="valores" id="valores">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="tag">O que nos move</span>
+      <h2>Firmeza no direito.<br><mark>Leveza no cuidado.</mark></h2>
+      <p>Três compromissos que aparecem em cada atendimento, cada processo e cada relação que construímos.</p>
+    </div>
+    <div class="grid3">
+      <article class="card yel rv">
+        <div class="num">01</div>
+        <div class="ico" aria-hidden="true">✦</div>
+        <h3>Nossa missão</h3>
+        <p>Transformamos vidas, com ação e inovação, acolhendo pessoas e gerando resultados.</p>
+      </article>
+      <article class="card cream rv" style="--d:.15s">
+        <div class="num">02</div>
+        <div class="ico" aria-hidden="true">⌁</div>
+        <h3>Nossa visão</h3>
+        <p>Ser referência na advocacia previdenciária e trabalhista, com posicionamento relevante no cenário nacional e consolidado nas regiões atuantes.</p>
+      </article>
+      <article class="card dark rv" style="--d:.3s">
+        <div class="num">03</div>
+        <div class="ico" aria-hidden="true">♥</div>
+        <h3>Nossos valores</h3>
+        <ul>
+          <li><strong>Fazer o que tem que ser feito.</strong>Exigência nos procedimentos, cuidado nos detalhes e soluções criativas.</li>
+          <li><strong>Se importar com as pessoas.</strong>Um olhar atento para clientes e colegas, cultivando relações significativas.</li>
+          <li><strong>Visão de crescimento.</strong>Desenvolvimento contínuo, mente aberta e trabalho em sinergia.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EQUIPE ===== -->
+<section class="equipe" id="equipe">
+  <div class="wrap">
+    <div class="head rv">
+      <div>
+        <span class="tag">Gente que faz acontecer</span>
+        <h2>Conheça quem cuida<br>de cada <mark>etapa.</mark></h2>
+      </div>
+      <p class="note">Um time multidisciplinar, próximo e preparado para acompanhar você.</p>
+    </div>
+    <div class="team-grid" id="teamGrid" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ===== TIMELINE ===== -->
+<section class="timeline-sec" id="linha-do-tempo">
+  <div class="wrap">
+    <div class="timeline-head rv">
+      <span class="tag">Passo a passo</span>
+      <h2>Uma história feita<br>de <mark>movimento.</mark></h2>
+      <p>De uma prática dedicada à defesa dos trabalhadores a uma atuação presente em todo o país.</p>
+    </div>
+    <div class="timeline" role="list">
+      <article class="tl-item rv" role="listitem"><span class="tl-year">2011</span><div class="tl-dot"></div><div><h3>O começo</h3><p>Arthur Franco, sócio e fundador da Advocacia Franco, inicia sua prática advocatícia dedicando-se à defesa dos direitos dos trabalhadores.</p></div></article>
+      <article class="tl-item rv" style="--d:.1s" role="listitem"><span class="tl-year">2015</span><div class="tl-dot"></div><div><h3>Primeira expansão</h3><p>A qualidade do trabalho exige novos caminhos: o escritório passa a atender todo o país e abre sua unidade em São Gotardo (MG).</p></div></article>
+      <article class="tl-item rv" role="listitem"><span class="tl-year">2019</span><div class="tl-dot"></div><div><h3>Uma nova sede</h3><p>Com a consolidação da Advocacia Franco, é inaugurada a sede em Patos de Minas (MG).</p></div></article>
+      <article class="tl-item rv" style="--d:.1s" role="listitem"><span class="tl-year">2020</span><div class="tl-dot"></div><div><h3>Mais perto</h3><p>A atuação é estendida para Guarda dos Ferreiros (MG).</p></div></article>
+      <article class="tl-item rv" role="listitem"><span class="tl-year">2021</span><div class="tl-dot"></div><div><h3>Referência regional</h3><p>A Advocacia Franco se estabelece como referência em direito na região e abre seu escritório em Uberlândia (MG).</p></div></article>
+      <article class="tl-item rv" style="--d:.1s" role="listitem"><span class="tl-year">2023</span><div class="tl-dot"></div><div><h3>Novos horizontes</h3><p>Início das atividades em Araxá (MG).</p></div></article>
+      <article class="tl-item rv" role="listitem"><span class="tl-year">2025</span><div class="tl-dot"></div><div><h3>Mais Brasil</h3><p>Expansão para o Noroeste Mineiro, com a inauguração da unidade de João Pinheiro (MG), além do início das atividades em Florianópolis (SC).</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="final">
+  <div class="wrap rv">
+    <span class="tag" style="background:#fff;color:var(--ink)">Sua história também importa</span>
+    <h2>Vamos <mark style="background:var(--ink);color:var(--y)">conversar?</mark></h2>
+    <p>Conte a sua situação e descubra o melhor caminho. A equipe da Advocacia Franco está pronta para ouvir você.</p>
+    <div class="cta">
+      <a class="btn dark" href="https://wa.me/553438216128?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20da%20Advocacia%20Franco." target="_blank" rel="noopener">Falar com um advogado →</a>
+      <a class="btn light" href="index.html">Voltar ao início</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <a href="index.html" class="logo" aria-label="Advocacia Franco">
+          <img src="Novo-Projeto-2-1.png" alt="Advocacia Franco" />
+          <span>Advocacia<br>Franco</span>
+        </a>
+        <p class="brand-p">Advocacia trabalhista e previdenciária com atendimento humano e transparente.</p>
+      </div>
+      <div>
+        <h5>Páginas</h5>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="areas.html">Áreas</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contato.html">Fale conosco</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Fale com a gente</h5>
+        <ul>
+          <li><a href="https://wa.me/553438216128" target="_blank" rel="noopener">(34) 3821-6128</a></li>
+          <li><a href="https://wa.me/5534997088099" target="_blank" rel="noopener">(34) 99708-8099</a></li>
+          <li><a href="mailto:juridico@advocaciafranco.com.br">juridico@advocaciafranco.com.br</a></li>
+          <li style="color:#aa9e80;font-size:.8rem;margin-top:6px">Segunda a sexta · 08h às 17h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bot">
+      <span>© <span id="ano"></span> Advocacia Franco. Todos os direitos reservados.</span>
+      <span>Arthur Franco Sociedade Individual de Advocacia · CNPJ 35.479.437/0001-34</span>
+      <span>Conteúdo informativo, sem promessa de resultado.</span>
+    </div>
+  </div>
+</footer>
+
+<a id="wa" href="https://wa.me/553438216128?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20da%20Advocacia%20Franco." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#16120A" d="M16 3C9 3 3.400 8.600 3.400 15.500c0 2.400.7 4.700 1.900 6.600L3 29l7.100-2.200c1.800 1 3.800 1.500 5.900 1.500 7 0 12.600-5.600 12.600-12.500S23 3 16 3zm6.500 17.800c-.3.800-1.600 1.500-2.200 1.600-.6.100-1.300.1-2.100-.1-.5-.2-1.200-.4-2-.8-3.600-1.500-5.900-5.100-6.100-5.400-.2-.2-1.500-2-1.500-3.800s.9-2.700 1.300-3.100c.3-.4.700-.4.900-.4h.6c.2 0 .5-.1.700.5.300.6.900 2.100 1 2.300.1.200.1.400 0 .6-.1.200-.2.400-.4.600-.2.200-.4.400-.5.600-.2.200-.4.400-.2.800.2.300.9 1.500 2 2.400 1.300 1.200 2.400 1.600 2.800 1.800.3.200.6.100.8-.1.200-.3 1-1.100 1.200-1.500.3-.4.500-.3.900-.2.300.1 2.200 1 2.600 1.200.4.200.6.300.7.400.1.300.1 1-.2 1.800z"/></svg>
+</a>
+
+<script>
+/* =====================================================
+   EQUIPE
+   ===================================================== */
+const teamMembers = [
+  { name:'Arthur Franco Carvalho', photo:'https://advocaciafranco.com.br/wp-content/uploads/2024/09/Arthur-Franco-Carvalho.png', role:'Sócio fundador e advogado especialista em Direito do Trabalho. É CEO e conduz a gestão e o direcionamento estratégico do escritório.' },
+  { name:'Ana Beatriz', photo:'https://advocaciafranco.com.br/wp-content/uploads/2024/09/ana-beatriz.png', role:'Analista Jurídica e graduanda em Direito. Atua no atendimento, acompanhamento de clientes e análise de demandas previdenciárias e trabalhistas.' },
+  { name:'Ana Cecília', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/05/ana-cecilia.png', role:'Assistente Jurídica e graduanda em Direito. Atua na unidade de Patos de Minas com atendimento e análise de demandas.' },
+  { name:'Ana Clara', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/05/ana-clara.png', role:'Assistente Jurídica e graduanda em Direito. Atua em Patos de Minas no acompanhamento de clientes e orientação jurídica.' },
+  { name:'Déwryan', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/10/Dewryan.png', role:'Advogada e pós-graduanda em Direito Previdenciário. Lidera a unidade de Guarda dos Ferreiros.' },
+  { name:'Fabíola', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/05/fabiola.png', role:'Advogada e cientista social, especialista em Direito Previdenciário e Direito Civil Previdenciário. Atua em processos administrativos e aposentadorias especiais.' },
+  { name:'Gabriel', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/05/gabriel.png', role:'Advogado e pós-graduado em Direito Trabalhista. Lidera a unidade de Araxá.' },
+  { name:'Jéssica', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/05/jessica.png', role:'Advogada e pós-graduanda em Direito Trabalhista. Lidera a unidade de Patos de Minas.' },
+  { name:'Juliana Canhestro', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/05/juliana-canhestro.png', role:'Advogada especialista em Direito Previdenciário. Coordena equipes de relacionamento com o cliente, comercial e marketing.' },
+  { name:'Juliana Martori', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/05/juliana-martori.png', role:'Assistente Jurídica e graduanda em Direito. Atua no Escritório Digital, acompanhando clientes de todo o Brasil.' },
+  { name:'Kamily', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/10/kamily.png', role:'Assistente Jurídica e graduanda em Direito. Atua na unidade de Araxá com atendimento e acompanhamento de clientes.' },
+  { name:'Lara', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/10/Lara.png', role:'Advogada especialista em Direito Previdenciário. Atua no planejamento previdenciário estratégico, audiências e sustentações orais.' },
+  { name:'Laura', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/05/laura.png', role:'Assistente Jurídica. Atua na unidade de Guarda dos Ferreiros com atendimento e análise de demandas.' },
+  { name:'Maisa', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/05/maisa.png', role:'Assistente Jurídica e graduanda em Direito. Atua na unidade Fundinho, em Uberlândia, com orientação e acompanhamento de clientes.' },
+  { name:'Maria Eduarda', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/10/Maria-Eduarda-1.png', role:'Assistente Jurídica e graduanda em Direito. Atua no suporte às demandas do setor trabalhista.' },
+  { name:'Maria Luiza', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/05/maria-luiza.png', role:'Advogada e pós-graduanda em Aposentadorias Rurais. Atua no núcleo Previdenciário, audiências e sustentações orais.' },
+  { name:'Mariana', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/10/Mariana.png', role:'Assistente Jurídica e graduanda em Direito. Atua na unidade de São Gotardo com atendimento e análise de demandas.' },
+  { name:'Raphaela', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/05/raphaela.png', role:'Advogada e pós-graduada em Direito Previdenciário. Lidera a unidade de São Gotardo.' },
+  { name:'Sarah', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/05/sarah.png', role:'Advogada e pós-graduanda em Direito Previdenciário. Atua no planejamento previdenciário estratégico e em audiências.' },
+  { name:'Thawan', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/05/thawan.png', role:'Advogada especialista em Direito Trabalhista. É gestora e coordena o time jurídico e o setor trabalhista.' },
+  { name:'Vitória', photo:'https://advocaciafranco.com.br/wp-content/uploads/2026/05/vitoria.png', role:'Parte do time Advocacia Franco, com atuação dedicada ao atendimento e acompanhamento das demandas dos clientes.' }
+];
+
+/* =====================================================
+   MARQUEE
+   ===================================================== */
+const marqueeItems = [
+  'Direito Previdenciário','Direito Trabalhista','Atendimento humano',
+  'Linguagem simples','Seu direito, seu futuro','Em todo o Brasil'
+];
+const mq = document.getElementById('mq');
+if (mq) {
+  mq.innerHTML = [...Array(3)].flatMap(() => marqueeItems).map(t => `<span>${t}</span>`).join('');
+}
+
+/* =====================================================
+   RENDER DA EQUIPE
+   ===================================================== */
+const teamGrid = document.getElementById('teamGrid');
+const escapeHtml = (v) => String(v).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));
+
+if (teamGrid) {
+  teamGrid.innerHTML = teamMembers.map((m, i) => `
+    <article class="person rv" style="--d:${(i % 4) * .08}s">
+      <div class="photo">
+        <img src="${m.photo}" alt="Foto de ${escapeHtml(m.name)}" loading="lazy" decoding="async"
+             onerror="this.style.display='none';this.parentElement.style.background='var(--y2)'" />
+      </div>
+      <div class="info">
+        <h3 class="name">${escapeHtml(m.name)}</h3>
+        <p class="role">${escapeHtml(m.role)}</p>
+      </div>
+    </article>
+  `).join('') + '<p class="team-source rv">Fotos e perfis baseados na página <a href="https://advocaciafranco.com.br/quem-somos/" target="_blank" rel="noopener">Quem somos</a> da Advocacia Franco.</p>';
+}
+
+/* =====================================================
+   PRELOADER
+   ===================================================== */
+const pre = document.getElementById('pre');
+const hidePre = () => { pre?.classList.add('out'); };
+window.addEventListener('load', () => setTimeout(hidePre, 750));
+setTimeout(hidePre, 3200);
+
+/* =====================================================
+   BARRA DE PROGRESSO + NAV QUE ESCONDE
+   ===================================================== */
+const bar = document.getElementById('bar');
+const nav = document.getElementById('nav');
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
+let lastY = 0;
+
+function onScroll() {
+  const y = window.scrollY;
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  if (bar) bar.style.width = (docH > 0 ? (y / docH) * 100 : 0) + '%';
+  if (nav && menu && !menu.classList.contains('open')) {
+    nav.classList.toggle('hide', y > lastY && y > 300);
+  }
+  lastY = y;
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* =====================================================
+   MENU MOBILE
+   ===================================================== */
+function closeMenu() {
+  burger?.classList.remove('x');
+  menu?.classList.remove('open');
+  burger?.setAttribute('aria-expanded', 'false');
+  burger?.setAttribute('aria-label', 'Abrir menu');
+  document.body.style.overflow = '';
+}
+burger?.addEventListener('click', () => {
+  const open = !menu.classList.contains('open');
+  burger.classList.toggle('x', open);
+  menu.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', String(open));
+  burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+/* =====================================================
+   REVEAL AO ROLAR
+   ===================================================== */
+const revealObserver = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('in');
+    obs.unobserve(entry.target);
+  });
+}, { threshold: .12, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.rv').forEach(el => revealObserver.observe(el));
+
+/* =====================================================
+   PARALLAX DOS CHIPS
+   ===================================================== */
+const art = document.getElementById('art');
+art?.addEventListener('mousemove', e => {
+  const r = art.getBoundingClientRect();
+  const x = (e.clientX - r.left) / r.width - .5;
+  const y = (e.clientY - r.top) / r.height - .5;
+  art.querySelectorAll('.chip').forEach(c => {
+    const m = Number(c.dataset.m) || 12;
+    c.style.translate = `${x * m}px ${y * m}px`;
+  });
+});
+
+/* =====================================================
+   SCROLL SUAVE COM OFFSET DO NAV FIXO
+   ===================================================== */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (!id || id === '#') return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    const offset = (nav?.offsetHeight || 0) + 30;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
+
+/* =====================================================
+   ANO NO FOOTER
+   ===================================================== */
+const anoEl = document.getElementById('ano');
+if (anoEl) anoEl.textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

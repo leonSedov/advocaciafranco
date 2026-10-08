@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#ffb800" />
+<meta name="description" content="Áreas de atuação da Advocacia Franco: Direito Previdenciário e Direito Trabalhista. Atendimento humano e estratégico em todo o Brasil." />
+<meta property="og:title" content="Áreas de Atuação | Advocacia Franco" />
+<meta property="og:description" content="Duas áreas, um mesmo cuidado: Previdenciário e Trabalhista com atendimento humano." />
+<meta property="og:type" content="website" />
+<title>Áreas de Atuação | Advocacia Franco</title>
+<link rel="icon" type="image/png" href="logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ===== PALETA ===== */
+:root{
+  --y:#FFB800;
+  --y2:#FFD25C;
+  --ink:#16120A;
+  --cream:#FFF7E0;
+  --white:#fff;
+  --coral:#FF5E3A;
+  --mut:#655d4b;
+  --font:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --bounce:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--ink);background:var(--cream);line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:4px solid var(--coral);outline-offset:4px}
+.wrap{width:min(1180px,90%);margin:auto}
+section{padding:118px 0;position:relative}
+.tag{display:inline-block;background:var(--ink);color:var(--y);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:7px 16px;border-radius:99px;margin-bottom:20px}
+h1,h2,h3,h4{margin:0 0 14px}
+h2{font-size:clamp(2rem,5vw,4.6rem);font-weight:800;line-height:1.05;letter-spacing:-.05em}
+h2 mark{background:linear-gradient(transparent 58%,var(--y) 58%);color:inherit;padding:0 4px}
+p{margin:0 0 14px}
+
+/* ===== BOTÕES ===== */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:99px;font-weight:600;font-size:.95rem;border:2px solid var(--ink);transition:transform .4s var(--bounce),box-shadow .4s var(--ease),background .3s,color .3s;cursor:pointer;font-family:inherit}
+.btn.dark{background:var(--ink);color:var(--y)}
+.btn.light{background:transparent}
+.btn:hover{transform:translateY(-4px) rotate(-1.5deg);box-shadow:0 8px 0 var(--ink)}
+.btn.light:hover{background:var(--white)}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(60px) scale(.97);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+
+/* ===== PRELOADER (agora com a logo PNG) ===== */
+#pre{position:fixed;inset:0;background:var(--y);z-index:999;display:grid;place-items:center;transition:transform .9s var(--ease) .1s;border-radius:0 0 50% 50%/0 0 12% 12%}
+#pre.out{transform:translateY(-110%)}
+#pre img{width:130px;height:auto;max-width:38vw;display:block;animation:hop .7s var(--bounce) infinite alternate;filter:drop-shadow(0 6px 0 rgba(22,18,10,.18))}
+@keyframes hop{to{transform:translateY(-18px) rotate(-8deg)}}
+
+/* ===== PROGRESS BAR ===== */
+#bar{position:fixed;top:0;left:0;height:4px;width:0;background:var(--ink);z-index:200;transition:width .1s linear}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:14px;left:0;right:0;z-index:100}
+nav .nav-inner{width:min(1180px,92%);margin:auto;display:flex;justify-content:space-between;align-items:center;padding:10px 14px 10px 22px;border-radius:99px;background:var(--white);border:2px solid var(--ink);box-shadow:0 5px 0 var(--ink);transition:transform .5s var(--ease)}
+nav.hide .nav-inner{transform:translateY(-130%)}
+
+/* ===== LOGO (com imagem PNG) ===== */
+.logo{display:inline-flex;align-items:center;gap:11px;font-weight:700;font-size:1.2rem;line-height:1.02;letter-spacing:-.03em}
+.logo img{width:42px;height:42px;object-fit:contain;flex:none;display:block}
+.logo span{display:block}
+
+.menu{display:flex;gap:4px;list-style:none;align-items:center}
+.menu a{font-size:.86rem;font-weight:500;padding:9px 15px;border-radius:99px;transition:background .3s;display:inline-block}
+.menu a:hover{background:var(--y2)}
+.menu a.active{background:var(--y)}
+.menu .btn{padding:11px 22px;font-size:.85rem;border-width:2px}
+.menu .btn:hover{box-shadow:0 5px 0 var(--ink);transform:translateY(-3px) rotate(-1deg);background:var(--y);color:var(--ink)}
+#burger{display:none;background:var(--y);border:2px solid var(--ink);border-radius:50%;width:44px;height:44px;position:relative;padding:0}
+#burger i{position:absolute;left:11px;width:18px;height:2px;background:var(--ink);transition:.35s var(--ease)}
+#burger i:nth-child(1){top:14px}
+#burger i:nth-child(2){top:20px}
+#burger i:nth-child(3){top:26px}
+#burger.x i:nth-child(1){top:20px;transform:rotate(45deg)}
+#burger.x i:nth-child(2){opacity:0}
+#burger.x i:nth-child(3){top:20px;transform:rotate(-45deg)}
+
+/* ===== HERO ===== */
+.hero{background:var(--y);padding:180px 0 150px;overflow:hidden;min-height:100vh;display:flex;align-items:center}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;position:relative;z-index:2}
+.hero .lead{font-size:1.15rem;max-width:520px;margin-bottom:38px;font-weight:500;color:#3a3216}
+.hero h1{font-size:clamp(2.7rem,7vw,5.6rem);font-weight:800;line-height:1;letter-spacing:-.04em;margin-bottom:28px}
+.hero h1 em{font-style:normal;background:var(--ink);color:var(--y);padding:0 .18em;border-radius:.2em;display:inline-block;transform:rotate(-2deg)}
+.cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+
+/* ===== ARTE DO HERO ===== */
+.art{position:relative;aspect-ratio:1;max-width:470px;margin-inline:auto;width:100%}
+
+/* BLOB BRANCO com borda e sombra dura */
+.blob{
+  position:absolute;
+  inset:6%;
+  background:var(--white);
+  border:2px solid var(--ink);
+  border-radius:62% 38% 55% 45%/48% 58% 42% 52%;
+  box-shadow:0 14px 0 var(--ink);
+  animation:morph 9s ease-in-out infinite;
+}
+@keyframes morph{50%{border-radius:40% 60% 38% 62%/58% 42% 58% 42%;transform:rotate(8deg)}}
+
+/* LOGO GRANDE NO HERO (substitui o sorriso SVG) */
+.smile{position:absolute;inset:0;display:grid;place-items:center;z-index:2}
+.smile img{
+  width:58%;
+  height:auto;
+  max-width:300px;
+  display:block;
+  animation:float 4s ease-in-out infinite;
+  filter:drop-shadow(0 8px 20px rgba(22,18,10,.18));
+}
+@keyframes float{50%{transform:translateY(-14px) rotate(3deg)}}
+
+.chip{position:absolute;background:var(--white);border:2px solid var(--ink);border-radius:18px;padding:12px 18px;font-weight:700;font-size:.9rem;box-shadow:0 5px 0 var(--ink);animation:float 5s ease-in-out infinite;transition:translate .35s var(--ease);z-index:3}
+.chip small{display:block;font-weight:500;font-size:.72rem;color:var(--mut)}
+.c1{top:2%;left:-8%;transform:rotate(-6deg);animation-delay:-1.5s}
+.c2{bottom:8%;right:-9%;animation-delay:-2s;transform:rotate(5deg)}
+.c3{bottom:-2%;left:4%;background:var(--coral);color:#fff;animation-delay:-1s;font-size:.8rem}
+.sticker{position:absolute;top:-4%;right:-2%;width:120px;animation:spin 18s linear infinite;z-index:4}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wave{position:absolute;bottom:-1px;left:0;width:100%;line-height:0}
+.wave svg{width:100%;height:80px}
+
+/* ===== MARQUEE ===== */
+.marq{background:var(--ink);color:var(--y);overflow:hidden;padding:20px 0;transform:rotate(-1.2deg);margin:-30px -20px 0;position:relative;z-index:3}
+.marq div{display:flex;gap:44px;width:max-content;animation:mq 26s linear infinite;font-weight:700;font-size:1.3rem;white-space:nowrap}
+.marq span{display:inline-flex;align-items:center}
+.marq span::after{content:"☺";margin-left:44px;color:var(--white)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ===== INTRO ÁREAS ===== */
+.areas-intro{background:var(--cream);padding-bottom:0}
+.areas-intro .head{max-width:720px;margin-bottom:0}
+.areas-intro .head p{color:var(--mut);font-size:1.06rem}
+
+/* ===== BLOCOS DE ÁREA ===== */
+.areas-list{background:var(--cream);padding-top:70px}
+.area-block{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:center;padding:64px 58px;border:2px solid var(--ink);border-radius:36px;box-shadow:10px 10px 0 var(--ink);overflow:hidden;margin-bottom:64px;transition:transform .5s var(--bounce),box-shadow .4s}
+.area-block:hover{transform:translateY(-4px);box-shadow:10px 16px 0 var(--ink)}
+.area-block:last-child{margin-bottom:0}
+.area-block.yellow{background:var(--y)}
+.area-block.white{background:var(--white)}
+.area-block.reverse .area-content{order:2}
+.area-block.reverse .area-visual{order:1}
+
+.area-content .area-num{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border:2px solid var(--ink);border-radius:50%;background:var(--white);font-weight:800;font-size:1.05rem;margin-bottom:18px;box-shadow:0 4px 0 var(--ink)}
+
+/* ÍCONE PEQUENO COM IMAGEM */
+.area-content .area-ico{
+  display:block;
+  width:84px;
+  height:84px;
+  border:2px solid var(--ink);
+  border-radius:22px;
+  overflow:hidden;
+  margin-bottom:22px;
+  background:var(--ink);
+  box-shadow:0 5px 0 var(--ink);
+  transition:transform .5s var(--bounce);
+  position:relative;
+}
+.area-content .area-ico img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .6s var(--ease);
+}
+.area-block:hover .area-ico{transform:rotate(-6deg) scale(1.05)}
+.area-block:hover .area-ico img{transform:scale(1.1)}
+
+.area-content h3{font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin-bottom:16px}
+.area-content > p{color:#3a3216;font-size:1rem;max-width:520px;margin-bottom:30px;font-weight:500}
+.area-block.white .area-content > p{color:var(--mut);font-weight:400}
+
+.area-services{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 22px;margin-bottom:34px;padding:0}
+.area-services li{position:relative;padding-left:28px;font-size:.92rem;font-weight:500;line-height:1.45}
+.area-services li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;display:grid;place-items:center;background:var(--ink);color:var(--y);border-radius:50%;font-size:.65rem;font-weight:700}
+.area-block.white .area-services li::before{background:var(--y);color:var(--ink)}
+
+.area-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* VISUAL DA ÁREA (imagem circular) */
+.area-visual{position:relative;min-height:400px;display:grid;place-items:center;padding:20px}
+.area-visual::before{
+  content:"";
+  position:absolute;
+  top:50%;left:50%;
+  width:min(100%,420px);
+  aspect-ratio:1;
+  transform:translate(-50%,-50%);
+  border:2px dashed var(--ink);
+  border-radius:50%;
+  opacity:.22;
+  rotate:0deg;
+  animation:spinProp 55s linear infinite;
+  pointer-events:none;
+}
+@keyframes spinProp{to{rotate:360deg}}
+
+.area-ring{
+  position:relative;
+  width:min(100%,340px);
+  aspect-ratio:1;
+  border-radius:50%;
+  border:3px solid var(--ink);
+  overflow:hidden;
+  background:var(--y2);
+  animation:float 6s ease-in-out infinite;
+  transition:transform .6s var(--bounce);
+  z-index:1;
+}
+.area-block:hover .area-ring{transform:translateY(-6px) rotate(-1.5deg)}
+.area-ring .ring-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .7s var(--ease);
+}
+.area-block:hover .ring-img{transform:scale(1.06)}
+.area-ring .ring-label{
+  position:absolute;
+  left:50%;bottom:20px;
+  transform:translateX(-50%);
+  z-index:3;
+  padding:9px 18px;
+  background:var(--white);
+  border:2px solid var(--ink);
+  border-radius:99px;
+  font-size:.66rem;
+  font-weight:800;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink);
+  box-shadow:0 4px 0 var(--ink);
+  white-space:nowrap;
+}
+
+.area-badge{position:absolute;padding:14px 22px;background:var(--white);border:2px solid var(--ink);border-radius:16px;box-shadow:0 5px 0 var(--ink);font-weight:700;font-size:.86rem;line-height:1.3;z-index:2}
+.area-badge small{display:block;font-weight:500;font-size:.7rem;color:var(--mut);margin-top:2px}
+.area-block.yellow .area-badge{background:var(--coral);color:#fff;transform:rotate(5deg);top:6%;right:0}
+.area-block.yellow .area-badge small{color:#ffd6c9}
+.area-block.white .area-badge{background:var(--white);transform:rotate(-5deg);top:8%;left:0}
+.area-badge.b2{bottom:8%;top:auto;transform:rotate(6deg)}
+.area-block.yellow .area-badge.b2{left:0;right:auto;background:var(--white);color:var(--ink);transform:rotate(-6deg)}
+.area-block.yellow .area-badge.b2 small{color:var(--mut)}
+.area-block.white .area-badge.b2{right:0;left:auto;background:var(--ink);color:var(--y);transform:rotate(6deg)}
+.area-block.white .area-badge.b2 small{color:#f3df9e}
+
+/* ===== COMO FUNCIONA ===== */
+.como{background:var(--white)}
+.como .head{max-width:640px;margin-bottom:54px}
+.como .head p{color:var(--mut);font-size:1.04rem}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;counter-reset:s}
+.step{position:relative;padding:38px 30px 30px;border:2px dashed var(--ink);border-radius:28px;background:var(--cream);transition:transform .45s var(--bounce),background .35s}
+.step:hover{transform:translateY(-6px) rotate(-.6deg);background:var(--y)}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:-26px;left:26px;width:54px;height:54px;border-radius:50%;background:var(--y);border:2px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:1.3rem;box-shadow:0 4px 0 var(--ink);transition:transform .5s var(--bounce)}
+.step:hover::before{transform:rotate(360deg) scale(1.08);background:var(--white)}
+.step h4{font-size:1.25rem;font-weight:800;letter-spacing:-.03em;margin:10px 0 8px}
+.step p{color:var(--mut);font-size:.92rem;margin:0}
+
+/* ===== FAQ ===== */
+.faq{background:var(--y)}
+.faq .wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:70px}
+.faq h2{max-width:520px}
+.faq details{background:var(--white);border:2px solid var(--ink);border-radius:22px;padding:20px 26px;margin-bottom:14px;transition:transform .4s var(--bounce)}
+.faq details:hover{transform:translateX(6px)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;font-weight:700;font-size:1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--y);transition:transform .4s var(--bounce);font-weight:700}
+.faq details[open] summary::after{transform:rotate(135deg)}
+.faq details p{padding-top:12px;color:var(--mut);font-size:.94rem;margin:0}
+
+/* ===== CTA FINAL ===== */
+.final{background:var(--cream);text-align:center;padding:140px 0 155px;overflow:hidden}
+.final h2{font-size:clamp(3.2rem,7vw,6.4rem)}
+.final p{max-width:520px;margin:0 auto 30px;font-size:1.05rem;font-weight:500;color:var(--mut)}
+.final .cta{justify-content:center}
+.final::after{content:"";position:absolute;top:-110px;left:50%;width:520px;height:520px;border:2px solid var(--ink);border-radius:48% 52% 54% 46%/55% 45% 55% 45%;transform:translateX(-50%) rotate(16deg);opacity:.14;pointer-events:none}
+
+/* ===== FOOTER ===== */
+footer{background:var(--ink);color:#e9dfc2;padding:72px 0 26px}
+footer .top{display:grid;grid-template-columns:1.5fr 1fr 1.2fr;gap:60px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.14)}
+footer .logo{color:var(--y);margin-bottom:18px}
+footer .logo img{width:52px;height:52px}
+footer .brand-p{max-width:320px;font-size:.86rem;color:#aa9e80;margin:0}
+footer h5{color:var(--y);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 14px;font-weight:700}
+footer ul{list-style:none;display:grid;gap:6px;padding:0}
+footer li,footer li a{font-size:.84rem}
+footer a:hover{color:var(--y)}
+footer .bot{padding-top:22px;font-size:.72rem;color:#918466;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ===== WHATSAPP FLUTUANTE ===== */
+#wa{position:fixed;right:22px;bottom:22px;z-index:90;width:60px;height:60px;border-radius:50%;background:var(--y);border:2px solid var(--ink);box-shadow:0 5px 0 var(--ink);display:grid;place-items:center;transition:transform .4s var(--bounce)}
+#wa:hover{transform:scale(1.12) rotate(-8deg)}
+#wa svg{width:28px;height:28px}
+
+/* ===== RESPONSIVO ===== */
+@media(max-width:1000px){
+  .hero .wrap{gap:30px}
+  .area-block{grid-template-columns:1fr;gap:44px;padding:50px 40px}
+  .area-block.reverse .area-content{order:1}
+  .area-block.reverse .area-visual{order:2}
+  .area-visual{min-height:340px}
+  .faq .wrap{grid-template-columns:1fr;gap:40px}
+  .faq h2{max-width:none}
+}
+@media(max-width:900px){
+  section{padding:86px 0}
+  .hero{padding:130px 0 100px;min-height:auto}
+  #burger{display:block;z-index:120}
+  .menu{position:fixed;inset:0;background:var(--y);flex-direction:column;justify-content:center;gap:12px;padding:80px 30px;transform:translateY(-105%);transition:transform .7s var(--ease);border-radius:0 0 40px 40px;z-index:110}
+  .menu.open{transform:none}
+  .menu a{font-size:1.3rem;font-weight:700;padding:12px 22px}
+  .menu .btn{padding:14px 26px;font-size:1rem}
+  .steps{grid-template-columns:1fr;gap:44px}
+  .art{max-width:340px}
+  .c1{left:0}.c2{right:0}
+  footer .top{grid-template-columns:1fr;gap:34px}
+  .area-services{grid-template-columns:1fr}
+  .logo img{width:36px;height:36px}
+  #pre img{width:110px}
+  .smile img{max-width:220px}
+  .blob{box-shadow:0 10px 0 var(--ink)}
+}
+@media(max-width:640px){
+  .hero h1{font-size:clamp(2.5rem,10vw,3.6rem)}
+  .hero .lead{font-size:1rem}
+  .cta{flex-direction:column;align-items:stretch}
+  .cta .btn{justify-content:center}
+  .area-block{padding:40px 26px;border-radius:28px;box-shadow:6px 6px 0 var(--ink)}
+  .area-block:hover{box-shadow:6px 10px 0 var(--ink)}
+  .area-content .area-ico{width:70px;height:70px;border-radius:18px}
+  .area-ring{width:min(100%,270px)}
+  .area-ring .ring-label{font-size:.6rem;padding:7px 14px;bottom:14px}
+  .area-badge{font-size:.78rem;padding:12px 16px}
+  .area-badge small{font-size:.64rem}
+  .area-actions .btn{width:100%;justify-content:center}
+  #wa{width:54px;height:54px;right:16px;bottom:16px}
+  footer .bot{flex-direction:column;gap:6px}
+  .logo{font-size:1.05rem;gap:9px}
+  .logo img{width:32px;height:32px}
+  #pre img{width:95px}
+  .smile img{max-width:180px}
+  .blob{box-shadow:0 7px 0 var(--ink)}
+  .sticker{width:90px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01s!important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER — com a logo PNG -->
+<div id="pre" aria-hidden="true"><img src="icone-adv-franco-1.png" alt="Advocacia Franco"></div>
+
+<!-- PROGRESSO -->
+<div id="bar" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo" aria-label="Advocacia Franco, início">
+      <img src="Novo-Projeto-2-1.png" alt="Advocacia Franco" />
+      <span>Advocacia<br>Franco</span>
+    </a>
+    <button id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+    <ul class="menu" id="menu">
+      <li><a href="index.html">Início</a></li>
+      <li><a href="areas.html" class="active">Áreas</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contato.html" class="btn dark">Fale conosco</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="hero">
+  <div class="wrap">
+    <div>
+      <span class="tag rv">Áreas de atuação</span>
+      <h1 class="rv" style="--d:.1s">Onde a gente pode <em>te ajudar.</em></h1>
+      <p class="lead rv" style="--d:.2s">Atuamos com foco em duas áreas que fazem parte da vida de todo mundo: o seu trabalho e a sua aposentadoria. Sem juridiquês, sem enrolação — só caminhos claros para você.</p>
+      <div class="cta rv" style="--d:.3s">
+        <a href="#trabalhista" class="btn dark">Ver Direito Trabalhista →</a>
+        <a href="#previdenciario" class="btn light">Ver Previdenciário</a>
+      </div>
+    </div>
+    <div class="art rv" style="--d:.35s" id="art" aria-hidden="true">
+      <!-- BLOB BRANCO -->
+      <div class="blob"></div>
+
+      <!-- LOGO GRANDE NO HERO -->
+      <div class="smile">
+        <img src="icone-adv-franco-1.png" alt="Advocacia Franco" />
+      </div>
+
+      <div class="chip c1" data-m="18">💼 Trabalhista<small>Direitos do trabalho</small></div>
+      <div class="chip c2" data-m="-22">🌅 Previdenciário<small>Aposentadorias e benefícios</small></div>
+      <div class="chip c3" data-m="12">Atendimento humano ♥</div>
+
+      <!-- STICKER GIRATÓRIO — logo no centro -->
+      <svg class="sticker" viewBox="0 0 120 120">
+        <defs><path id="cp" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"/></defs>
+        <circle cx="60" cy="60" r="58" fill="#fff" stroke="#16120A" stroke-width="2"/>
+        <text font-size="11.5" font-weight="700" fill="#16120A" letter-spacing="2.4"><textPath href="#cp">SEU DIREITO • SEU FUTURO • SEU DIREITO •</textPath></text>
+        <image href="icone-adv-franco-1.png" x="42" y="40" width="36" height="36" preserveAspectRatio="xMidYMid meet"/>
+      </svg>
+    </div>
+  </div>
+  <div class="wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 40c240 60 480 60 720 20s480-40 720 10v10H0z" fill="#FFF7E0"/></svg>
+  </div>
+</header>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marq" aria-label="Especialidades"><div id="mq"></div></div>
+
+<!-- ===== INTRO ===== -->
+<section class="areas-intro" id="areas">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="tag">Especialidades</span>
+      <h2>Duas áreas, um mesmo <mark>cuidado.</mark></h2>
+      <p>Escolhemos nos aprofundar no que realmente importa para as pessoas: defender o seu trabalho e garantir o seu futuro. Um time dedicado a cada uma dessas frentes — com atenção real ao seu caso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LISTA DE ÁREAS ===== -->
+<section class="areas-list">
+
+  <!-- ============ TRABALHISTA ============ -->
+  <div class="wrap">
+    <article class="area-block yellow rv" id="trabalhista">
+      <div class="area-content">
+        <span class="area-num">01</span>
+
+        <!-- ÍCONE COM IMAGEM - TRABALHISTA -->
+        <div class="area-ico" aria-hidden="true">
+          <img
+            src="https://img.magnific.com/fotos-gratis/homem-trabalhando-com-equipamento-de-seguranca_23-2148976319.jpg?t=st=1791485037~exp=1791488637~hmac=10fb5b68f3f41d2b5e8a27af861fdef61e1c3b2c34b71e59c90891a8672ce99a&w=1480"
+            alt=""
+            loading="lazy"
+            onerror="this.style.display='none';this.parentElement.style.background='#FFD25C'"
+          />
+        </div>
+
+        <h3>Direito Trabalhista</h3>
+        <p>Para quem trabalha, ou já trabalhou, e quer proteger seus direitos. Analisamos seu contrato, sua rotina e o que você deixou de receber — e buscamos o que é seu por direito.</p>
+
+        <ul class="area-services">
+          <li>Rescisão e verbas rescisórias</li>
+          <li>Horas extras e adicional noturno</li>
+          <li>Reconhecimento de vínculo</li>
+          <li>Assédio moral e sexual</li>
+          <li>Acidente e doença ocupacional</li>
+          <li>FGTS e seguro-desemprego</li>
+          <li>Acordos e negociações</li>
+          <li>Consultoria preventiva</li>
+        </ul>
+
+        <div class="area-actions">
+          <a class="btn dark" href="https://wa.me/553438216128?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20preciso%20de%20ajuda%20em%20Direito%20Trabalhista." target="_blank" rel="noopener">Falar sobre meu caso →</a>
+          <a class="btn light" href="#faq">Dúvidas comuns</a>
+        </div>
+      </div>
+
+      <div class="area-visual" aria-hidden="true">
+        <!-- CÍRCULO COM IMAGEM - TRABALHISTA -->
+        <div class="area-ring">
+          <img
+            class="ring-img"
+            src="https://img.magnific.com/fotos-gratis/homem-trabalhando-com-equipamento-de-seguranca_23-2148976319.jpg?t=st=1791485037~exp=1791488637~hmac=10fb5b68f3f41d2b5e8a27af861fdef61e1c3b2c34b71e59c90891a8672ce99a&w=1480"
+            alt=""
+            loading="lazy"
+            onerror="this.style.display='none';this.parentElement.style.background='#FFD25C'"
+          />
+          <span class="ring-label">Trabalhista</span>
+        </div>
+        <div class="area-badge">+1.200<small>casos conduzidos</small></div>
+        <div class="area-badge b2">Cálculo<small>de verbas em 24h</small></div>
+      </div>
+    </article>
+
+    <!-- ============ PREVIDENCIÁRIO ============ -->
+    <article class="area-block white reverse rv" id="previdenciario">
+      <div class="area-content">
+        <span class="area-num">02</span>
+
+        <!-- ÍCONE COM IMAGEM - PREVIDENCIÁRIO -->
+        <div class="area-ico" aria-hidden="true">
+          <img
+            src="https://www.flc.adv.br/wp-content/uploads/2025/03/previdenciario.webp"
+            alt=""
+            loading="lazy"
+            onerror="this.style.display='none';this.parentElement.style.background='#FFD25C'"
+          />
+        </div>
+
+        <h3>Direito Previdenciário</h3>
+        <p>Para quem quer se aposentar, receber o benefício que é seu ou reverter uma negativa do INSS. Cuidamos de toda a análise, documentação e acompanhamos você até o resultado final.</p>
+
+        <ul class="area-services">
+          <li>Aposentadoria por idade e tempo</li>
+          <li>Aposentadoria especial</li>
+          <li>Aposentadoria rural</li>
+          <li>Auxílio-doença e incapacidade</li>
+          <li>BPC/LOAS</li>
+          <li>Pensão por morte</li>
+          <li>Revisão de benefícios</li>
+          <li>Planejamento previdenciário</li>
+        </ul>
+
+        <div class="area-actions">
+          <a class="btn dark" href="https://wa.me/553438216128?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20preciso%20de%20ajuda%20em%20Direito%20Previdenci%C3%A1rio." target="_blank" rel="noopener">Falar sobre meu caso →</a>
+          <a class="btn light" href="#faq">Dúvidas comuns</a>
+        </div>
+      </div>
+
+      <div class="area-visual" aria-hidden="true">
+        <!-- CÍRCULO COM IMAGEM - PREVIDENCIÁRIO -->
+        <div class="area-ring">
+          <img
+            class="ring-img"
+            src="https://www.flc.adv.br/wp-content/uploads/2025/03/previdenciario.webp"
+            alt=""
+            loading="lazy"
+            onerror="this.style.display='none';this.parentElement.style.background='#FFD25C'"
+          />
+          <span class="ring-label">Previdenciário</span>
+        </div>
+        <div class="area-badge">+800<small>aposentadorias</small></div>
+        <div class="area-badge b2">Análise<small>gratuita do caso</small></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===== COMO FUNCIONA ===== -->
+<section class="como">
+  <div class="wrap">
+    <div class="head rv">
+      <span class="tag">Simples assim</span>
+      <h2>Como <mark>funciona</mark> o atendimento.</h2>
+      <p>Do primeiro contato até o resultado final, você sabe exatamente em que etapa está. Sem termos complicados e sem perguntas sem resposta.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv">
+        <h4>Você conta seu caso</h4>
+        <p>Pelo WhatsApp, por telefone ou pessoalmente. Sem pressa, sem julgamento e sem “juridiquês”.</p>
+      </div>
+      <div class="step rv" style="--d:.15s">
+        <h4>A gente analisa</h4>
+        <p>Avaliamos documentos, prazos e possibilidades. Explicamos com clareza os cenários possíveis.</p>
+      </div>
+      <div class="step rv" style="--d:.3s">
+        <h4>Você acompanha tudo</h4>
+        <p>Atualizamos você a cada movimentação, para você nunca ficar no escuro sobre o seu processo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="rv">
+      <span class="tag">Dúvidas frequentes</span>
+      <h2>Perguntas que <mark>todo mundo</mark> faz.</h2>
+    </div>
+    <div class="rv" style="--d:.15s">
+      <details open>
+        <summary>Como sei se tenho direito a algo?</summary>
+        <p>Cada situação depende de documentos e prazos. Conte seu caso pelo WhatsApp e fazemos uma análise inicial gratuita para você entender suas possibilidades reais.</p>
+      </details>
+      <details>
+        <summary>Existe prazo para entrar com uma ação trabalhista?</summary>
+        <p>Sim. Em regra, você tem até 2 anos após a saída da empresa para entrar com a ação, e pode cobrar os últimos 5 anos trabalhados. Por isso, quanto antes buscar orientação, melhor.</p>
+      </details>
+      <details>
+        <summary>Preciso ter todos os documentos em mãos?</summary>
+        <p>Não. A gente orienta quais documentos são importantes no seu caso específico. Se você tiver só a carteira de trabalho e o extrato do FGTS, já conseguimos iniciar a análise.</p>
+      </details>
+      <details>
+        <summary>Meu benefício foi negado pelo INSS. Ainda posso recorrer?</summary>
+        <p>Sim. Existem recursos administrativos e também a possibilidade de ação judicial. Analisamos a negativa e mostramos o caminho mais rápido e viável para o seu caso.</p>
+      </details>
+      <details>
+        <summary>Como funcionam os honorários?</summary>
+        <p>Explicamos tudo de forma clara e por escrito antes de começar, sem surpresas. Trabalhamos com valores definidos em contrato e, em alguns casos, com honorários por êxito.</p>
+      </details>
+      <details>
+        <summary>Atendem em todo o Brasil?</summary>
+        <p>Sim. Nosso escritório está em Minas Gerais, mas atuamos em todo o território nacional por meio do processo eletrônico e de correspondentes, com atendimento por WhatsApp e videoconferência.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="final">
+  <div class="wrap rv">
+    <span class="tag">Sua história também importa</span>
+    <h2>Vamos <mark>conversar?</mark></h2>
+    <p>Conte a sua situação e descubra o melhor caminho. A equipe da Advocacia Franco está pronta para ouvir você, com um sorriso.</p>
+    <div class="cta">
+      <a class="btn dark" href="https://wa.me/553438216128?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20da%20Advocacia%20Franco%20e%20gostaria%20de%20orienta%C3%A7%C3%A3o." target="_blank" rel="noopener">Falar com um advogado →</a>
+      <a class="btn light" href="contato.html">Outras formas de contato</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <a href="index.html" class="logo" aria-label="Advocacia Franco">
+          <img src="Novo-Projeto-2-1.png" alt="Advocacia Franco" />
+          <span>Advocacia<br>Franco</span>
+        </a>
+        <p class="brand-p">Advocacia trabalhista e previdenciária com atendimento humano e transparente.</p>
+      </div>
+      <div>
+        <h5>Páginas</h5>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="areas.html">Áreas</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contato.html">Fale conosco</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Fale com a gente</h5>
+        <ul>
+          <li><a href="https://wa.me/553438216128" target="_blank" rel="noopener">(34) 3821-6128</a></li>
+          <li><a href="https://wa.me/5534997088099" target="_blank" rel="noopener">(34) 99708-8099</a></li>
+          <li><a href="mailto:juridico@advocaciafranco.com.br">juridico@advocaciafranco.com.br</a></li>
+          <li style="color:#aa9e80;font-size:.8rem;margin-top:6px">Segunda a sexta · 08h às 17h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bot">
+      <span>© <span id="ano"></span> Advocacia Franco. Todos os direitos reservados.</span>
+      <span>Arthur Franco Sociedade Individual de Advocacia · CNPJ 35.479.437/0001-34</span>
+      <span>Conteúdo informativo, sem promessa de resultado.</span>
+    </div>
+  </div>
+</footer>
+
+<a id="wa" href="https://wa.me/553438216128?text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20da%20Advocacia%20Franco%20e%20gostaria%20de%20orienta%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#16120A" d="M16 3C9 3 3.400 8.600 3.400 15.500c0 2.400.7 4.700 1.900 6.600L3 29l7.100-2.200c1.800 1 3.800 1.500 5.900 1.500 7 0 12.600-5.600 12.600-12.500S23 3 16 3zm6.500 17.800c-.3.800-1.600 1.500-2.200 1.600-.6.100-1.300.1-2.100-.1-.5-.2-1.200-.4-2-.8-3.600-1.500-5.900-5.100-6.100-5.400-.2-.2-1.500-2-1.500-3.800s.9-2.700 1.300-3.100c.3-.4.700-.4.900-.4h.6c.2 0 .5-.1.700.5.300.6.900 2.100 1 2.300.1.200.1.400 0 .6-.1.200-.2.400-.4.600-.2.200-.4.400-.5.600-.2.200-.4.400-.2.800.2.300.9 1.500 2 2.400 1.300 1.200 2.400 1.600 2.800 1.800.3.200.6.100.8-.1.200-.3 1-1.100 1.200-1.500.3-.4.500-.3.900-.2.300.1 2.200 1 2.600 1.200.4.200.6.300.7.400.1.300.1 1-.2 1.800z"/></svg>
+</a>
+
+<script>
+/* =====================================================
+   MARQUEE
+   ===================================================== */
+const marqueeItems = [
+  'Direito Previdenciário','Direito Trabalhista','Atendimento humano',
+  'Linguagem simples','Seu direito, seu futuro','Em todo o Brasil'
+];
+const mq = document.getElementById('mq');
+if (mq) {
+  mq.innerHTML = [...Array(3)].flatMap(() => marqueeItems).map(t => `<span>${t}</span>`).join('');
+}
+
+/* =====================================================
+   PRELOADER
+   ===================================================== */
+const pre = document.getElementById('pre');
+const hidePre = () => { pre?.classList.add('out'); };
+window.addEventListener('load', () => setTimeout(hidePre, 750));
+setTimeout(hidePre, 3200);
+
+/* =====================================================
+   BARRA DE PROGRESSO + NAV QUE ESCONDE
+   ===================================================== */
+const bar = document.getElementById('bar');
+const nav = document.getElementById('nav');
+const burger = document.getElementById('burger');
+const menu = document.getElementById('menu');
+let lastY = 0;
+
+function onScroll() {
+  const y = window.scrollY;
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  if (bar) bar.style.width = (docH > 0 ? (y / docH) * 100 : 0) + '%';
+  if (nav && menu && !menu.classList.contains('open')) {
+    nav.classList.toggle('hide', y > lastY && y > 300);
+  }
+  lastY = y;
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* =====================================================
+   MENU MOBILE
+   ===================================================== */
+function closeMenu() {
+  burger?.classList.remove('x');
+  menu?.classList.remove('open');
+  burger?.setAttribute('aria-expanded', 'false');
+  burger?.setAttribute('aria-label', 'Abrir menu');
+  document.body.style.overflow = '';
+}
+burger?.addEventListener('click', () => {
+  const open = !menu.classList.contains('open');
+  burger.classList.toggle('x', open);
+  menu.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', String(open));
+  burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+/* =====================================================
+   REVEAL AO ROLAR
+   ===================================================== */
+const revealObserver = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('in');
+    obs.unobserve(entry.target);
+  });
+}, { threshold: .12, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.rv').forEach(el => revealObserver.observe(el));
+
+/* =====================================================
+   PARALLAX DOS CHIPS
+   ===================================================== */
+const art = document.getElementById('art');
+art?.addEventListener('mousemove', e => {
+  const r = art.getBoundingClientRect();
+  const x = (e.clientX - r.left) / r.width - .5;
+  const y = (e.clientY - r.top) / r.height - .5;
+  art.querySelectorAll('.chip').forEach(c => {
+    const m = Number(c.dataset.m) || 12;
+    c.style.translate = `${x * m}px ${y * m}px`;
+  });
+});
+
+/* =====================================================
+   SCROLL SUAVE COM OFFSET DO NAV
+   ===================================================== */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (!id || id === '#') return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    const offset = (nav?.offsetHeight || 0) + 30;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
+
+/* =====================================================
+   ANO NO FOOTER
+   ===================================================== */
+const anoEl = document.getElementById('ano');
+if (anoEl) anoEl.textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
